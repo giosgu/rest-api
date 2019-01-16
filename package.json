@@ -1,0 +1,18 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "pruebas de concepto",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc",
+    "dev": "ts-node ./src/server.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "express": "^4.16.4",
+    "typescript": "^3.2.2"
+  }
+}
