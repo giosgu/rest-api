@@ -14,8 +14,11 @@ class MainRoutes {
       mainController.root(req, res)
     );
     this.router.get("/guido", (req: express.Request, res: express.Response) =>
-    guidoController.root(req, res)
-  );
+        guidoController.root(req, res)
+    );
+    this.router.post("/guido",(req: express.Request, res: express.Response) =>
+        guidoController.post(req, res)
+    );
 
   }
 }
