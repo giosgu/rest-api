@@ -1,6 +1,7 @@
 import * as express from "express";
 import { mainController } from "../controllers/MainController";
 import { guidoController } from "../controllers/guidoController";
+import {casoController} from "../controllers/casoController"
 
 class MainRoutes {
   public router: express.Router = express.Router();
@@ -19,7 +20,9 @@ class MainRoutes {
     this.router.post("/guido",(req: express.Request, res: express.Response) =>
         guidoController.post(req, res)
     );
-
+    this.router.get("/casos",(req: express.Request, res: express.Response) =>
+        casoController.get(req, res)
+    );
   }
 }
 
