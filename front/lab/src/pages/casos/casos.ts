@@ -10,27 +10,12 @@ import {CasosServiceProvider} from '../../providers/casos-service/casos-service'
 export class CasosPage {
   selectedItem: any;
   icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
   users: any[] = [];
-  casos: any[]=[];
+  casos: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+   
   }
 
   itemTapped(event, item) {
@@ -50,6 +35,7 @@ export class CasosPage {
         console.error(error);
       }
     )
+    
 
     this.casosService.getCasos()
     .subscribe(
