@@ -12,7 +12,7 @@ export class CasosPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
   users: any[] = [];
-  casos: any[] = [];
+  casos: any[]=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
@@ -55,9 +55,12 @@ export class CasosPage {
     .subscribe(
       (data) => { // Success
         this.casos = data['results'];
+        alert("Casos: " +  this.casos[0].email);
+        
       },
       (error) =>{
         console.error(error);
+        alert("error");
       }
     )
   }
