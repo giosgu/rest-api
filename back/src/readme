@@ -1,0 +1,2 @@
+compilar: npm run tsc 
+ejecutar: node ./target/server.js
