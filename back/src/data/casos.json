@@ -5,16 +5,18 @@
             "socio": {
                 "numero": "30015824984",
                 "nombre": "Guido",
-                "apellido": "Giosa"
+                "apellido": "Giosa",
+                "edad": "34"
             },
             "direccion": {
-                "calle": "Paso 760 4°B",
+                "calle": "Pueyrredon 2549 10°A",
                 "ciudad": "CABA",
                 "provincia": "CABA",
+                "barrio":"Recoleta",
                 "codigoPostal": "1213",
                 "coordinadas": {
-                    "latitude": "52.3779",
-                    "longitude": "157.2167"
+                    "latitud": "52.3779",
+                    "longitud": "157.2167"
                 }
             },"sintoma":"dolor de cabeza"
         },
@@ -23,16 +25,18 @@
             "socio": {
                 "numero": "62321582354",
                 "nombre": "Juan",
-                "apellido": "Topo"
+                "apellido": "Topo",
+                "edad":"79"
             },
             "direccion": {
                 "calle": "Paso 760 4°B",
                 "ciudad": "CABA",
                 "provincia": "CABA",
+                "barrio": "Almagro",
                 "codigoPostal": "1213",
                 "coordinadas": {
-                    "latitude": "52.3779",
-                    "longitude": "157.2167"
+                    "latitud": "52.3779",
+                    "longitud": "157.2167"
                 }
             },"sintoma":"dolor de espalda"
         }
