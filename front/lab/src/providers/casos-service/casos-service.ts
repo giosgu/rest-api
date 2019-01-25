@@ -15,7 +15,8 @@ export class CasosServiceProvider {
   }
 
   getCasos(){
-    //return this.http.get("http://localhost:3000/casos");
-    return this.http.get("https://randomuser.me/api/?results=25");
+    return this.http.get("/api/casos");
+   //return this.http.get("https://randomuser.me/api/?results=25");
+   //return this.http.get("https://api.github.com/users/seeschweiler");
   }
 }

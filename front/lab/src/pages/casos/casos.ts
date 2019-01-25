@@ -41,12 +41,9 @@ export class CasosPage {
     .subscribe(
       (data) => { // Success
         this.casos = data['results'];
-        alert("Casos: " +  this.casos[0].email);
-        
       },
       (error) =>{
-        console.error(error);
-        alert("error");
+        alert("error en getCasos " + error);
       }
     )
   }

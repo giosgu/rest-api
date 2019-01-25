@@ -1,0 +1,40 @@
+{
+    "results": [
+        {
+            "numero": "654321",
+            "socio": {
+                "numero": "30015824984",
+                "nombre": "Guido",
+                "apellido": "Giosa"
+            },
+            "direccion": {
+                "calle": "Paso 760 4°B",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "codigoPostal": "1213",
+                "coordinadas": {
+                    "latitude": "52.3779",
+                    "longitude": "157.2167"
+                }
+            },"sintoma":"dolor de cabeza"
+        },
+        {
+            "numero": "123456",
+            "socio": {
+                "numero": "62321582354",
+                "nombre": "Juan",
+                "apellido": "Topo"
+            },
+            "direccion": {
+                "calle": "Paso 760 4°B",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "codigoPostal": "1213",
+                "coordinadas": {
+                    "latitude": "52.3779",
+                    "longitude": "157.2167"
+                }
+            },"sintoma":"dolor de espalda"
+        }
+    ]
+} 

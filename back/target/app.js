@@ -21,6 +21,7 @@ class App {
     config() {
         // support application/json type post data
         this.app.use(bodyParser.json());
+        this.app.disable('etag');
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use("/", MainRoute_1.mainRoutes);
