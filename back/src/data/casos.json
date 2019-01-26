@@ -2,11 +2,18 @@
     "results": [
         {
             "numero": "654321",
+            "tipoVisita": "Visita Brevedad",
             "socio": {
                 "numero": "30015824984",
                 "nombre": "Guido",
                 "apellido": "Giosa",
-                "edad": "34"
+                "edad": "34",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"si",
+                    "socioInterno":"si",
+                    "pmi":"no"
+                }
             },
             "direccion": {
                 "calle": "Pueyrredon 2549 10°A",
@@ -14,19 +21,28 @@
                 "provincia": "CABA",
                 "barrio":"Recoleta",
                 "codigoPostal": "1213",
-                "coordinadas": {
-                    "latitud": "52.3779",
-                    "longitud": "157.2167"
+                "coordenadas": {
+                    "latitud": "-34.584858",
+                    "longitud": "-58.392403"
                 }
             },"sintoma":"dolor de cabeza"
+                
+
         },
         {
             "numero": "123456",
+            "tipoVisita": "Visita Médica",
             "socio": {
                 "numero": "62321582354",
                 "nombre": "Juan",
                 "apellido": "Topo",
-                "edad":"79"
+                "edad":"79",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
             },
             "direccion": {
                 "calle": "Paso 760 4°B",
@@ -34,11 +50,12 @@
                 "provincia": "CABA",
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
-                "coordinadas": {
-                    "latitud": "52.3779",
-                    "longitud": "157.2167"
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
                 }
             },"sintoma":"dolor de espalda"
+           
         }
     ]
 } 

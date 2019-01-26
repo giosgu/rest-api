@@ -23,4 +23,8 @@ export class CasoPage {
     console.log('ionViewDidLoad CasoPage');
   }
 
+  abrirMaps(latitud:string, longitud:string){
+    window.open("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud,"_blank");
+  }
+
 }

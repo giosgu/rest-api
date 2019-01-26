@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Caso: {{caso.numero}}</ion-title>
   </ion-navbar>
 
@@ -14,15 +14,31 @@
 
 
 <ion-content padding>
-    
+        <div class="main-content" text-wrap text-center>
+                <div class="circular"></div>
+                <h2>{{caso.socio.nombre}} {{caso.socio.apellido}} - {{caso.tipoVisita}}</h2>
+                <p>Código de Socio: {{caso.socio.numero}}</p>
+                <p class="profile-description">Síntomas: {{caso.sintoma}}</p>
+                <hr>
+                <ion-list no-lines>
+                    <ion-item>
+                            <ion-icon name="pin" color="twitter" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
+                            <p>{{caso.direccion.calle}} ({{caso.direccion.barrio}}), {{caso.direccion.ciudad}}</p>
+                    </ion-item>
+                    <ion-item>
+                            <ion-icon name="call" color="primary" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
+                            <p>Teléfono</p>
+                            {{caso.socio.telefono}}
+                    </ion-item>
+                    <ion-item>
+                            <ion-icon name="medkit" color="secondary" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
+                            <p>Marcas del Socio</p>
+                            Crónico: {{caso.socio.marcas.cronico}}, Interno: {{caso.socio.marcas.socioInterno}}, PMI: {{caso.socio.marcas.pmi}}
+                    </ion-item>
+                </ion-list>
+<!--            <p>Dirección: {{caso.direccion.calle}} ({{caso.direccion.barrio}})   <ion-icon name="navigate" (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )" >  </ion-icon></p>
+                <a button ion-button (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )" color="primary" item-end medium>Mapa</a>
+ -->       </div>
 
-    <ion-card>
-        <ion-card-header>
-            <ion-card-title>Socio: {{caso.socio.nombre}} {{caso.socio.apellido}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            <p>Dirección: {{caso.direccion.calle}} ({{caso.direccion.barrio}})   <ion-icon name="navigate"></ion-icon></p>
-        </ion-card-content>
-    </ion-card>
   
 </ion-content>
