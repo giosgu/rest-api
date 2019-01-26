@@ -3,8 +3,11 @@
         {
             "numero": "654321",
             "tipoVisita": "Visita Brevedad",
+            "horaAsignacion": "10:15",
+            "estado":"Nuevo",
             "socio": {
                 "numero": "30015824984",
+                "plan":"410",
                 "nombre": "Guido",
                 "apellido": "Giosa",
                 "edad": "34",
@@ -17,6 +20,7 @@
             },
             "direccion": {
                 "calle": "Pueyrredon 2549 10°A",
+                "entreCalles": "Marcelo T. de Alvear y Santa Fe",
                 "ciudad": "CABA",
                 "provincia": "CABA",
                 "barrio":"Recoleta",
@@ -25,15 +29,18 @@
                     "latitud": "-34.584858",
                     "longitud": "-58.392403"
                 }
-            },"sintoma":"dolor de cabeza"
+            },"sintomas":"dolor de cabeza"
                 
 
         },
         {
             "numero": "123456",
             "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
             "socio": {
                 "numero": "62321582354",
+                "plan": "210",
                 "nombre": "Juan",
                 "apellido": "Topo",
                 "edad":"79",
@@ -46,6 +53,7 @@
             },
             "direccion": {
                 "calle": "Paso 760 4°B",
+                "entreCalles": "Córdoba y San Luis",
                 "ciudad": "CABA",
                 "provincia": "CABA",
                 "barrio": "Almagro",
@@ -54,7 +62,7 @@
                     "latitud": "-34.599640",
                     "longitud": "-58.403326"
                 }
-            },"sintoma":"dolor de espalda"
+            },"sintomas":"dolor de espalda"
            
         }
     ]
