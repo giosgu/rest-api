@@ -7,6 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CasosPage } from '../pages/casos/casos';
+import {CasoPage} from '../pages/caso/caso';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,7 +20,8 @@ import { CasosServiceProvider } from '../providers/casos-service/casos-service';
     MyApp,
     HomePage,
     ListPage,
-    CasosPage
+    CasosPage,
+    CasoPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { CasosServiceProvider } from '../providers/casos-service/casos-service';
     MyApp,
     HomePage,
     ListPage,
-    CasosPage
+    CasosPage,
+    CasoPage
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
+import {CasoPage} from '../caso/caso'
 
 @Component({
   selector: 'page-casos',
@@ -12,16 +13,17 @@ export class CasosPage {
   icons: string[];
   users: any[] = [];
   casos: any[] = [];
+  caso:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
    
   }
 
-  itemTapped(event, item) {
+  mostrarCaso($event, caso){
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(CasosPage, {
-      item: item
+    this.navCtrl.push(CasoPage, {
+      caso: caso
     });
   }
 

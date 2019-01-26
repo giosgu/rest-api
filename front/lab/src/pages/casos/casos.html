@@ -3,13 +3,14 @@
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Casos de Urgencias</ion-title>
+      <ion-title>Casos de Urgencias</ion-title>       
     </ion-navbar>
   </ion-header>
   
   <ion-content>
+    
     <ion-list>
-      <ion-item *ngFor="let caso of casos">
+      <ion-item *ngFor="let caso of casos" (click)="mostrarCaso($event, caso)">
         <h2>{{caso.numero }} - {{ caso.direccion.calle | uppercase }} ({{caso.direccion.barrio}})</h2>
         <p>Edad: {{ caso.socio.edad }}</p>
       </ion-item>
