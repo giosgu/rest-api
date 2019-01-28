@@ -8,7 +8,7 @@ import * as fs from "fs";
 export class CasoController{
 
     public get(req: Request, res: Response) {
-        console.log("/Casos : Get");
+        console.log("/Casos: Get " + new Date());
         const path = require("path");
         console.log(path.resolve("../back/src/data/casos.json"));
         var obj = JSON.parse(fs.readFileSync(path.resolve("../back/src/data/casos.json"), 'utf8'));

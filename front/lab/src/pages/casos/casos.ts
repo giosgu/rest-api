@@ -14,6 +14,7 @@ export class CasosPage {
   users: any[] = [];
   casos: any[] = [];
   caso:any;
+  titulo:string
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
@@ -28,25 +29,18 @@ export class CasosPage {
   }
 
   ionViewDidLoad(){
-    this.userService.getUsers()
-    .subscribe(
-      (data) => { // Success
-        this.users = data['results'];
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
-    
+   this.obtenerCasos().subscribe(
+    (data) => { // Success
+      this.casos = data['results'];
+    },
+    (error) =>{
+      alert("error en getCasos " + error);
+    }
+  )
+  }
 
-    this.casosService.getCasos()
-    .subscribe(
-      (data) => { // Success
-        this.casos = data['results'];
-      },
-      (error) =>{
-        alert("error en getCasos " + error);
-      }
-    )
+  protected obtenerCasos() {
+    return this.casosService.getCasos()
+    
   }
 }

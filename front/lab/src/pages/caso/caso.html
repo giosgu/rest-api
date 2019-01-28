@@ -35,6 +35,9 @@
                     <ion-item>
                             <ion-icon name="pin" color="twitter" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
                             <p>{{caso.direccion.calle}} entre {{caso.direccion.entreCalles}} ({{caso.direccion.barrio}}), {{caso.direccion.ciudad}}</p>
+                            <ion-icon name="navigate" color="primary" item-end  (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )">
+
+                            </ion-icon  >
                     </ion-item>
                     <ion-item>
                             <ion-icon name="call" color="primary" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>

@@ -7,7 +7,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CasosPage } from '../pages/casos/casos';
-import {CasoPage} from '../pages/caso/caso';
+import { CasoPage } from '../pages/caso/caso';
+import { TabCasosPage } from '../pages/tab-casos/tab-casos';
+import { CasosPendientesPage } from '../pages/casos/casosPendientes';
+import { CasosAbiertosPage } from '../pages/casos/casosAbiertos';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -21,7 +24,10 @@ import { CasosServiceProvider } from '../providers/casos-service/casos-service';
     HomePage,
     ListPage,
     CasosPage,
-    CasoPage
+    CasoPage,
+    TabCasosPage,
+    CasosPendientesPage,
+    CasosAbiertosPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,10 @@ import { CasosServiceProvider } from '../providers/casos-service/casos-service';
     HomePage,
     ListPage,
     CasosPage,
-    CasoPage
+    CasoPage,
+    TabCasosPage,
+    CasosPendientesPage,
+    CasosAbiertosPage
   ],
   providers: [
     StatusBar,

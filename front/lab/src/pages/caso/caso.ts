@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'caso.html',
 })
 export class CasoPage {
-  private caso:any
+  protected caso:any
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.caso =navParams.get("caso");
   }
