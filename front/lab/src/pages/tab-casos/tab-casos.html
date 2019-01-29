@@ -6,8 +6,8 @@
 -->
 
 
-<ion-tabs>
-    <ion-tab [root]="tab1Root" [rootParams]="{parametro:parametro}"  tabTitle="Todos" tabIcon="home"></ion-tab>
-    <ion-tab [root]="tab2Root" tabTitle="Pendientes" tabIcon="information-circle"></ion-tab>
-    <ion-tab [root]="tab3Root" tabTitle="Aceptados" tabIcon="contacts"></ion-tab>
+<ion-tabs  class="tabs-icon-text">
+    <ion-tab [root]="tab1Root" [rootParams]="{casos:casos}"  tabTitle="Todos" tabIcon="list-box"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{casos:casos}"  tabTitle="Pendientes" tabIcon="information-circle"></ion-tab>
+    <ion-tab [root]="tab3Root" [rootParams]="{casos:casos}"  tabTitle="Aceptados" tabIcon="checkmark"></ion-tab>
 </ion-tabs>

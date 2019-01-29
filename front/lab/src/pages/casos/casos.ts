@@ -12,13 +12,14 @@ export class CasosPage {
   selectedItem: any;
   icons: string[];
   users: any[] = [];
-  casos: any[] = [];
+  protected casos: any[] = [];
   caso:any;
   titulo:string
+  msgSinCasos:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
-   
+      this.inicializar(this.casos = navParams.get("casos"));
   }
 
   mostrarCaso($event, caso){
@@ -28,19 +29,24 @@ export class CasosPage {
     });
   }
 
-  ionViewDidLoad(){
-   this.obtenerCasos().subscribe(
-    (data) => { // Success
-      this.casos = data['results'];
-    },
-    (error) =>{
-      alert("error en getCasos " + error);
-    }
-  )
+  protected inicializar(casos:any[]){
+    this.casos = casos;
+    this.msgSinCasos = "No posee casos asignados"
+    this.titulo = "Casos de Urgencias"
   }
 
   protected obtenerCasos() {
     return this.casosService.getCasos()
     
+  }
+
+  protected filtrarCasos(parameter:any[], estado:string){
+    let casosFiltrados = []
+    for (let entry of parameter) {
+        if(entry.estado === estado){
+            casosFiltrados.push(entry);
+        }
+    }
+    return casosFiltrados;
   }
 }

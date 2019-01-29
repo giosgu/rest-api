@@ -8,22 +8,11 @@ import { CasosPage } from '../casos/casos';
   })
   export class CasosPendientesPage extends CasosPage {
 
-    ionViewDidLoad(){
-        this.obtenerCasos().subscribe(
-            (data) => { // Success
-                let tmp = data['results'];
-                for (let entry of tmp) {
-                    //if(entry.estado === "Nuevo"){
-                        this.casos.push(entry);
-                    //}
-                }
-            },
-            (error) =>{
-              alert("error en getCasos " + error);
-            }
-          )
-
-                
+    protected inicializar(casos:any[]){
+        this.casos = this.filtrarCasos(casos, "Nuevo")
+        this.msgSinCasos = "No posee casos pendientes de aceptación"
+        this.titulo = "Casos Pendientes"
     }
+    
   }
     

@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { CasosPage } from '../casos/casos';
 
 @Component({
     selector: 'page-casos',
     templateUrl: 'casos.html'
   })
-  export class CasosAbiertosPage {
+  export class CasosAbiertosPage extends CasosPage {
 
-    casos: any[] = [];
+    casos: any[];
     titulo:string;
-    parametro: any[]; 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams ){
-        alert("casosAbiertos.ts " + navParams.get("parametro"));
-        this.parametro = navParams.get("parametro");
-        alert(this.parametro.length)
+      protected inicializar(casos:any[]){
+        this.casos = this.filtrarCasos(casos, "Aceptado")
+        this.msgSinCasos = "No posee casos aceptados"
+        this.titulo = "Casos Aceptados"
       }
 
-    ionViewDidLoad(){
     }
-  }
+
+
     
