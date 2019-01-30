@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
+import {CasoPage} from '../caso/caso'
 
 @Component({
   selector: 'page-casos',
@@ -11,40 +12,41 @@ export class CasosPage {
   selectedItem: any;
   icons: string[];
   users: any[] = [];
-  casos: any[] = [];
+  protected casos: any[] = [];
+  caso:any;
+  titulo:string
+  msgSinCasos:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
-   
+      this.inicializar(this.casos = navParams.get("casos"));
   }
 
-  itemTapped(event, item) {
+  mostrarCaso($event, caso){
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(CasosPage, {
-      item: item
+    this.navCtrl.push(CasoPage, {
+      caso: caso
     });
   }
 
-  ionViewDidLoad(){
-    this.userService.getUsers()
-    .subscribe(
-      (data) => { // Success
-        this.users = data['results'];
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
-    
+  protected inicializar(casos:any[]){
+    this.casos = casos;
+    this.msgSinCasos = "No posee casos asignados"
+    this.titulo = "Casos de Urgencias"
+  }
 
-    this.casosService.getCasos()
-    .subscribe(
-      (data) => { // Success
-        this.casos = data['results'];
-      },
-      (error) =>{
-        alert("error en getCasos " + error);
-      }
-    )
+  protected obtenerCasos() {
+    return this.casosService.getCasos()
+    
+  }
+
+  protected filtrarCasos(parameter:any[], estado:string){
+    let casosFiltrados = []
+    for (let entry of parameter) {
+        if(entry.estado === estado){
+            casosFiltrados.push(entry);
+        }
+    }
+    return casosFiltrados;
   }
 }

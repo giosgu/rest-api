@@ -2,43 +2,324 @@
     "results": [
         {
             "numero": "654321",
+            "tipoVisita": "Visita Brevedad",
+            "horaAsignacion": "10:15",
+            "estado":"Nuevo",
             "socio": {
                 "numero": "30015824984",
+                "plan":"410",
                 "nombre": "Guido",
                 "apellido": "Giosa",
-                "edad": "34"
+                "edad": "34",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"si",
+                    "socioInterno":"si",
+                    "pmi":"no"
+                }
             },
             "direccion": {
                 "calle": "Pueyrredon 2549 10°A",
+                "entreCalles": "Marcelo T. de Alvear y Santa Fe",
                 "ciudad": "CABA",
                 "provincia": "CABA",
                 "barrio":"Recoleta",
                 "codigoPostal": "1213",
-                "coordinadas": {
-                    "latitud": "52.3779",
-                    "longitud": "157.2167"
+                "coordenadas": {
+                    "latitud": "-34.584858",
+                    "longitud": "-58.392403"
                 }
-            },"sintoma":"dolor de cabeza"
+            },"sintomas":"dolor de cabeza"
+                
+
         },
         {
             "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
             "socio": {
                 "numero": "62321582354",
+                "plan": "210",
                 "nombre": "Juan",
                 "apellido": "Topo",
-                "edad":"79"
+                "edad":"17",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
             },
             "direccion": {
                 "calle": "Paso 760 4°B",
+                "entreCalles": "Córdoba y San Luis",
                 "ciudad": "CABA",
                 "provincia": "CABA",
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
-                "coordinadas": {
-                    "latitud": "52.3779",
-                    "longitud": "157.2167"
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
                 }
-            },"sintoma":"dolor de espalda"
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "789654",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"79",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Boulogne Sur Mer 960",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "888547",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"21",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Emilio Mitre 46",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "414141",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"56",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Av. Del Libertador 15647",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"47",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Lavalle 420",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"89",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Uruguay 1723",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"97",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Costa Rica 2958",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"12",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "San José de La Madrid 8858",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"32",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Ya no me salen más direcciones 2020",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
         }
     ]
 } 

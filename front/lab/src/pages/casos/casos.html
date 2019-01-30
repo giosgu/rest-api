@@ -1,18 +1,23 @@
-<ion-header>
-    <ion-navbar>
+<ion-header >
+    <ion-navbar color="primary">
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Casos de Urgencias</ion-title>
+      <ion-title>{{titulo}}</ion-title>       
     </ion-navbar>
   </ion-header>
   
   <ion-content>
+    
     <ion-list>
-      <ion-item *ngFor="let caso of casos">
+      <ion-item *ngFor="let caso of casos"  (click)="mostrarCaso($event, caso)">
         <h2>{{caso.numero }} - {{ caso.direccion.calle | uppercase }} ({{caso.direccion.barrio}})</h2>
-        <p>Edad: {{ caso.socio.edad }}</p>
+        <p>Edad: {{ caso.socio.edad }} | {{caso.horaAsignacion}}</p>
       </ion-item>
+      <ion-item *ngIf="casos.length <= 0">
+        {{msgSinCasos}}
+      </ion-item>
+
     </ion-list>
   </ion-content>
   
