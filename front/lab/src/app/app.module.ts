@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -18,6 +20,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UserServiceProvider } from '../providers/user-service/user-service';
 import { CasosServiceProvider } from '../providers/casos-service/casos-service';
+import { MapsProvider } from '../providers/maps/maps';
+import { JsMapsProvider } from '../providers/js-maps/js-maps';
+import { NativeMapsProvider } from '../providers/native-maps/native-maps';
+import { MapCasosPage } from '../pages/map-casos/map-casos';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +37,8 @@ import { CasosServiceProvider } from '../providers/casos-service/casos-service';
     TabCasosPage,
     CasosPendientesPage,
     CasosAbiertosPage,
-    CargaTabCasosPage
+    CargaTabCasosPage,
+    MapCasosPage
   ],
   imports: [
     BrowserModule,
@@ -46,14 +55,20 @@ import { CasosServiceProvider } from '../providers/casos-service/casos-service';
     TabCasosPage,
     CasosPendientesPage,
     CasosAbiertosPage,
-    CargaTabCasosPage
+    CargaTabCasosPage,
+    MapCasosPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserServiceProvider,
-    CasosServiceProvider
+    CasosServiceProvider,
+    Geolocation,
+    MapsProvider,
+    JsMapsProvider,
+    NativeMapsProvider,
+    GoogleMaps
   ]
 })
 export class AppModule {}

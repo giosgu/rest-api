@@ -5,9 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-import { CasosPage } from '../pages/casos/casos';
-import {TabCasosPage} from '../pages/tab-casos/tab-casos'
 import { CargaTabCasosPage } from '../pages/carga-tab-casos/carga-tab-casos';
+import{MapCasosPage} from '../pages/map-casos/map-casos'
 
 @Component({
   templateUrl: 'app.html'
@@ -27,6 +26,7 @@ export class MyApp {
       { title: 'Casos', component: CargaTabCasosPage },
       { title: 'Notificaciones', component: HomePage },
       { title: 'Chat', component: ListPage },
+      { title: 'Maps', component: MapCasosPage },
     ];
 
   }

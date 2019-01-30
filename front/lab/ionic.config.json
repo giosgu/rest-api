@@ -1,6 +1,8 @@
 {
   "name": "lab",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "proxies": [
     {
