@@ -26,8 +26,8 @@
                 "barrio":"Recoleta",
                 "codigoPostal": "1213",
                 "coordenadas": {
-                    "latitud": "-34.584858",
-                    "longitud": "-58.392403"
+                    "latitud": "-34.584805",
+                    "longitud": "-58.392392"
                 }
             },"sintomas":"dolor de cabeza"
                 
@@ -91,8 +91,8 @@
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
                 "coordenadas": {
-                    "latitud": "-34.599640",
-                    "longitud": "-58.403326"
+                    "latitud": "-34.598423",
+                    "longitud": "-58.405017"
                 }
             },"sintomas":"dolor de espalda"
            
@@ -123,8 +123,8 @@
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
                 "coordenadas": {
-                    "latitud": "-34.599640",
-                    "longitud": "-58.403326"
+                    "latitud": "-34.622013",
+                    "longitud": "-58.443921"
                 }
             },"sintomas":"dolor de espalda"
            
@@ -155,8 +155,8 @@
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
                 "coordenadas": {
-                    "latitud": "-34.599640",
-                    "longitud": "-58.403326"
+                    "latitud": "-34.471887",
+                    "longitud": "-58.504867"
                 }
             },"sintomas":"dolor de espalda"
            
@@ -187,8 +187,8 @@
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
                 "coordenadas": {
-                    "latitud": "-34.599640",
-                    "longitud": "-58.403326"
+                    "latitud": "-34.601923",
+                    "longitud": "-58.372841"
                 }
             },"sintomas":"dolor de espalda"
            

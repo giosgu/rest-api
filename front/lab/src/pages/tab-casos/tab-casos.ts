@@ -4,6 +4,7 @@ import {CasosAbiertosPage} from '../casos/casosAbiertos';
 import {CasosPage} from '../casos/casos';
 import {CasosPendientesPage} from '../casos/casosPendientes';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
+import { MapCasosPage } from '../map-casos/map-casos';
 
 /**
  * Generated class for the TabCasosPage page.
@@ -23,6 +24,7 @@ export class TabCasosPage {
   tab1Root :any = CasosPage;
   tab2Root :any = CasosPendientesPage;
   tab3Root :any = CasosAbiertosPage;
+  tab4Root :any = MapCasosPage;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public casosService: CasosServiceProvider, public loadingCtrl: LoadingController) {

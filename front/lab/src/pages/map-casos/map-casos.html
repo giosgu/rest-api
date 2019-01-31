@@ -11,9 +11,15 @@
       </button>
       <ion-title>Mapa de Casos</ion-title>       
     </ion-navbar>
+    //<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </ion-header>
 
 
 <ion-content>
     <div #map id="map"></div>
+    <div id="legend"><h3>Notas</h3></div>
 </ion-content>
+
+<ion-footer>
+    <button ion-button color="light" full (click)="testMarker()">Test Marker</button>
+</ion-footer>

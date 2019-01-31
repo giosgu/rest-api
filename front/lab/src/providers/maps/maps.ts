@@ -24,7 +24,14 @@ export class MapsProvider {
   }
 
   init(location, element){
-    alert(this.map.constructor)
     this.map.init(location, element);
   }
+
+  public addMarker(lat: number, lng: number){
+    this.map.addMarker(lat, lng);
+  }
+
+  public addMarkers(array:any[]){
+       this.map.addMarkers(array)
+   }
 }
