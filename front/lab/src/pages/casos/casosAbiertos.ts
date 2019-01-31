@@ -8,7 +8,6 @@ import { CasosPage } from '../casos/casos';
   })
   export class CasosAbiertosPage extends CasosPage {
 
-    casos: any[];
     titulo:string;
 
       protected inicializar(casos:any[]){

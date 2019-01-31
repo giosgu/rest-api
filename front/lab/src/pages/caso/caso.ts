@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CasoUrgencia } from 'casosUrgencias';
 
 /**
  * Generated class for the CasoPage page.
@@ -14,7 +15,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'caso.html',
 })
 export class CasoPage {
-  protected caso:any
+  protected caso:CasoUrgencia
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.caso =navParams.get("caso");
   }
