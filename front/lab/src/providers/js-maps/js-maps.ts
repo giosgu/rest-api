@@ -16,7 +16,7 @@ export class JsMapsProvider {
   
   map: any;
   markers:any[]=[]
-  caso:caso;
+//  caso:caso;
 
   constructor() {
     
