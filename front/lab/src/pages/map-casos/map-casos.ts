@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MapsProvider } from './../../providers/maps/maps';
+import { CasoUrgencia } from 'casosUrgencias';
 
 /**
  * Generated class for the MapCasosPage page.
@@ -25,7 +26,7 @@ export class MapCasosPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   public markers: any[] = [];
-  protected casos: any[] = [];
+  protected casos: CasoUrgencia[] = [];
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public mapsProvider: MapsProvider) {
     this.casos = navParams.get("casos")
@@ -57,15 +58,7 @@ export class MapCasosPage {
   }
 
   
-marcarCasosAsignados(){
-
-  let coordenadas :any[] = [];
-  this.casos.forEach(element => {
-    var coordenada = {latitud:element.direccion.coordenadas.latitud,longitud:element.direccion.coordenadas.longitud}
-    coordenadas.push(coordenada)
-  });
-
-  this.mapsProvider.addMarkers(coordenadas);
-
-}
+  marcarCasosAsignados(){
+    this.mapsProvider.addMarkers(this.casos);
+  }
 }

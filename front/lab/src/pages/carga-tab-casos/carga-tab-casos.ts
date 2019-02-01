@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {TabCasosPage} from '../tab-casos/tab-casos';
+import {CasoUrgencia} from  'casosUrgencias'
+
 
 /**
  * Generated class for the CargaTabCasosPage page.
@@ -17,7 +19,7 @@ import {TabCasosPage} from '../tab-casos/tab-casos';
 })
 export class CargaTabCasosPage {
 
-  casos: any[];
+  casos: CasoUrgencia[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
       public loadingCtrl: LoadingController, public casosService: CasosServiceProvider) {
@@ -28,10 +30,11 @@ export class CargaTabCasosPage {
     loader.present().then(() => {
       this.obtenerCasos().subscribe(
         (data) => { // Success
-          
-          this.casos = data['results'];
+
+          this.casos = data['CasoUrgencias'];
           loader.dismiss();
           this.navCtrl.setRoot(TabCasosPage, { 'casos': this.casos })
+
         },
         (error) =>{
           alert("error en getCasos " + error);

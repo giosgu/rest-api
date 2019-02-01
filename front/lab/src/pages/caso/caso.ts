@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CasoUrgencia } from 'casosUrgencias';
 
 /**
  * Generated class for the CasoPage page.
@@ -14,7 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'caso.html',
 })
 export class CasoPage {
-  protected caso:any
+  static readonly ESTADO_ABIERTO = "Nuevo";
+  static readonly ESTADO_ACEPTAR = "Aceptado";
+  static readonly ESTADO_RECHAZAR = "Cerrado";
+  static readonly VISITA_MEDICA = "Visita Médica";
+  static readonly VISITA_BREVEDAD = "Visita Brevedad";
+  static readonly VISITA_PSIQUIATRIA = "Visita Priquiatria";
+
+  protected caso:CasoUrgencia
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.caso =navParams.get("caso");
   }

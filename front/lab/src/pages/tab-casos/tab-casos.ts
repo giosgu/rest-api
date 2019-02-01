@@ -5,6 +5,7 @@ import {CasosPage} from '../casos/casos';
 import {CasosPendientesPage} from '../casos/casosPendientes';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import { MapCasosPage } from '../map-casos/map-casos';
+import { CasoUrgencia } from 'casosUrgencias';
 
 /**
  * Generated class for the TabCasosPage page.
@@ -20,7 +21,7 @@ import { MapCasosPage } from '../map-casos/map-casos';
 })
 export class TabCasosPage {
 
-  casos;
+  casos: CasoUrgencia[] = [];
   tab1Root :any = CasosPage;
   tab2Root :any = CasosPendientesPage;
   tab3Root :any = CasosAbiertosPage;

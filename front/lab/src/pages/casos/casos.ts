@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import {CasoPage} from '../caso/caso'
+import {CasoUrgencia} from  'casosUrgencias'
 
 @Component({
   selector: 'page-casos',
@@ -12,8 +13,8 @@ export class CasosPage {
   selectedItem: any;
   icons: string[];
   users: any[] = [];
-  protected casos: any[] = [];
-  caso:any;
+  protected casos: CasoUrgencia[] = [];
+  caso:CasoUrgencia;
   titulo:string
   msgSinCasos:string;
 
@@ -29,7 +30,7 @@ export class CasosPage {
     });
   }
 
-  protected inicializar(casos:any[]){
+  protected inicializar(casos:CasoUrgencia[]){
     this.casos = casos;
     this.msgSinCasos = "No posee casos asignados"
     this.titulo = "Casos de Urgencias"
@@ -40,11 +41,11 @@ export class CasosPage {
     
   }
 
-  protected filtrarCasos(parameter:any[], estado:string){
-    let casosFiltrados = []
-    for (let entry of parameter) {
-        if(entry.estado === estado){
-            casosFiltrados.push(entry);
+  protected filtrarCasos(casos:CasoUrgencia[], estado:string){
+    let casosFiltrados :CasoUrgencia[] = []
+    for (let caso of casos) {
+        if(caso.estado === estado){
+            casosFiltrados.push(caso);
         }
     }
     return casosFiltrados;
