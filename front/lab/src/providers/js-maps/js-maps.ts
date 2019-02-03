@@ -1,10 +1,8 @@
-import { Injectable } from '@angular/core';
-import { GoogleMapsEvent } from '@ionic-native/google-maps';
+import { Injectable, ViewChild } from '@angular/core';
 import {} from 'googlemaps';
 import { CasoUrgencia } from 'casosUrgencias';
 import { CasoPage } from '../../pages/caso/caso';
-import { directive } from '@angular/core/src/render3/instructions';
-import { ModalController } from 'ionic-angular';
+import { Nav, App } from 'ionic-angular';
 
 
 
@@ -30,7 +28,7 @@ export class JsMapsProvider {
 
 //  caso:caso;
 
-  constructor( public modalCtrl: ModalController ) {
+  constructor( public app: App ) {
 
   }
 
@@ -84,7 +82,7 @@ private armarLeyenda(legend:HTMLElement){
     marker.setIcon(this.definirIcono(caso))
     let that = this;
     marker.addListener('click', function() {
-     that.abrirModalCaso(caso)
+     that.abrirCaso(caso)
     });
     this.markers.push(marker);
 
@@ -95,9 +93,8 @@ private armarLeyenda(legend:HTMLElement){
     });
   }
 
-  public abrirModalCaso(caso:CasoUrgencia){
-    var modalPage = this.modalCtrl.create(CasoPage, {"caso": caso}); 
-    modalPage.present(); 
+  public abrirCaso(caso:CasoUrgencia){
+   this.app.getActiveNav().push(CasoPage, {caso:caso});
   }    
   
   private definirIcono(caso:CasoUrgencia):string{

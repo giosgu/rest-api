@@ -35,6 +35,10 @@ export class CasoPage {
     this.abrirMapNavigation({latitud:this.caso.direccion.coordenadas.latitud, longitud:this.caso.direccion.coordenadas.longitud})
   }
 
+  cerrarCaso(){
+    alert("No implementado!")
+  }
+
   abrirMapNavigation(destino:any){
     window.open("https://www.google.com/maps/dir/?api=1&destination="+destino.latitud+","+destino.longitud+"&travelmode=driving","_blank");
     
@@ -48,8 +52,5 @@ export class CasoPage {
     window.open("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud,"_blank");
   }
 
-  cerrarCaso(){
-    alert("TODO")
-  }
  
 }

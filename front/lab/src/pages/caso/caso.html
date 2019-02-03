@@ -8,9 +8,6 @@
 
   <ion-navbar color="primary" >
     <ion-title>Caso: {{caso.numero}} ({{caso.estado}})
-        <i class="material-icons" (click)="cerrarModal()" > 
-                close
-        </i>
     </ion-title>
    </ion-navbar>
   
@@ -20,11 +17,6 @@
 
 <ion-content padding>
         <div class="main-content" text-wrap text-center>
-                <div class="circular"></div>
-
-                <!--<h2>{{caso.socio.nombre}} {{caso.socio.apellido}} - {{caso.tipoVisita}}</h2>
-                <p>Código de Socio: {{caso.socio.numero}}</p>
-                -->
                 <ion-list no-lines>
                         <ion-item>
                                 <ion-icon name="information-circle" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
@@ -40,9 +32,6 @@
                     <ion-item>
                             <ion-icon name="pin" color="twitter" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
                             <p>{{caso.direccion.calle}} entre {{caso.direccion.entreCalles}} ({{caso.direccion.barrio}}), {{caso.direccion.ciudad}}</p>
-                            <ion-icon name="navigate" color="primary" item-end  (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )">
-
-                            </ion-icon  >
                     </ion-item>
                     <ion-item>
                             <ion-icon name="call" color="primary" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>

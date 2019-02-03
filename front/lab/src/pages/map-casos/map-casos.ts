@@ -28,8 +28,9 @@ export class MapCasosPage {
   public markers: any[] = [];
   protected casos: CasoUrgencia[] = [];
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation, public mapsProvider: MapsProvider) {
-    this.casos = navParams.get("casos")
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public geolocation: Geolocation, public mapsProvider: MapsProvider) {
+      this.casos = navParams.get("casos")
   }
 
   ionViewDidLoad() {
