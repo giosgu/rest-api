@@ -22,7 +22,7 @@ export class JsMapsProvider {
   markers:any[]=[]
   private readonly PIN_VERDE = 'http://maps.google.com/mapfiles/ms/micons/green-dot.png'
   private readonly PIN_ROJO = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png'
-  private readonly PIN_AZUL = 'http://maps.google.com/mapfiles/ms/micons/blue.png'
+  private readonly PIN_AZUL = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png'
  
   
 
@@ -54,11 +54,11 @@ private armarLeyenda(legend:HTMLElement){
       var icons = {
         visitaMedica: {
           name: 'Visita Médica',
-          icon: this.PIN_VERDE
+          icon: this.PIN_ROJO
         },
         visitaBrevedad: {
           name: 'Visita Brevedad',
-          icon: this.PIN_ROJO,
+          icon: this.PIN_AZUL,
         }
       };
 
@@ -79,7 +79,9 @@ private armarLeyenda(legend:HTMLElement){
         map: this.map,
         position: latLng,
     });
-    marker.setIcon(this.definirIcono(caso))
+    caso.estado == CasoPage.ESTADO_ABIERTO ? marker.setAnimation(google.maps.Animation.BOUNCE): '';
+    
+   // marker.setIcon(this.definirIcono(caso))
     let that = this;
     marker.addListener('click', function() {
      that.abrirCaso(caso)
@@ -100,13 +102,12 @@ private armarLeyenda(legend:HTMLElement){
   private definirIcono(caso:CasoUrgencia):string{
     switch(caso.tipoVisita){
       case CasoPage.VISITA_MEDICA:{
-        return this.PIN_VERDE;
+        return this.PIN_ROJO;
       }
       default:{
-        return this.PIN_ROJO
+        return this.PIN_AZUL
       }
     }
   }
 
- 
 }

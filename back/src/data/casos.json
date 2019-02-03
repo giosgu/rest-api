@@ -5,6 +5,7 @@
             "tipoVisita": "Visita Brevedad",
             "horaAsignacion": "10:15",
             "estado":"Nuevo",
+            "coseguro":"250",
             "socio": {
                 "numero": "30015824984",
                 "plan":"410",
@@ -38,6 +39,7 @@
             "tipoVisita": "Visita Médica",
             "horaAsignacion": "12:05",
             "estado":"Aceptado",
+            "coseguro":"250",
             "socio": {
                 "numero": "62321582354",
                 "plan": "210",
@@ -70,6 +72,7 @@
             "tipoVisita": "Visita Médica",
             "horaAsignacion": "12:05",
             "estado":"Aceptado",
+            "coseguro":"250",
             "socio": {
                 "numero": "62321582354",
                 "plan": "210",
@@ -91,8 +94,8 @@
                 "barrio": "Almagro",
                 "codigoPostal": "1213",
                 "coordenadas": {
-                    "latitud": "-34.598423",
-                    "longitud": "-58.405017"
+                    "latitud": "-34.590094",
+                    "longitud": "-58.412158"
                 }
             },"sintomas":"dolor de espalda"
            
@@ -102,6 +105,7 @@
             "tipoVisita": "Visita Médica",
             "horaAsignacion": "12:05",
             "estado":"Aceptado",
+            "coseguro":"250",
             "socio": {
                 "numero": "62321582354",
                 "plan": "210",
@@ -134,6 +138,7 @@
             "tipoVisita": "Visita Médica",
             "horaAsignacion": "12:05",
             "estado":"Aceptado",
+            "coseguro":"250",
             "socio": {
                 "numero": "62321582354",
                 "plan": "210",

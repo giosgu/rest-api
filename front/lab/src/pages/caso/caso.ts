@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { CasoUrgencia } from 'casosUrgencias';
 
 /**
@@ -23,8 +23,9 @@ export class CasoPage {
   static readonly VISITA_PSIQUIATRIA = "Visita Priquiatria";
 
   protected caso:CasoUrgencia
-  constructor(public navCtrl: NavController, public navParams: NavParams,  private view:ViewController) {
-    this.caso =navParams.get("caso");
+  constructor(public navCtrl: NavController, public navParams: NavParams,  
+    private view:ViewController, public alertCtrl: AlertController) {
+      this.caso =navParams.get("caso");
   }
 
   cerrarModal(){
@@ -50,6 +51,15 @@ export class CasoPage {
 
   abrirMaps(latitud:string, longitud:string){
     window.open("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud,"_blank");
+  }
+
+  mostrarAlertaCoseguro() {
+    const alert = this.alertCtrl.create({
+      title: 'Pago de Coseguro',
+      subTitle: 'Requiere el pago de $' + this.caso.coseguro,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
  

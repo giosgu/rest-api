@@ -50,8 +50,14 @@
                             Crónico: {{caso.socio.marcas.cronico}}, Interno: {{caso.socio.marcas.socioInterno}}, PMI: {{caso.socio.marcas.pmi}}
                     </ion-item>
                 </ion-list>
-                <a button ion-button color="secondary" item-end medium href="##" *ngIf="caso.estado == 'Nuevo'">Rechazar</a>
-                <a button ion-button color="primary" item-end medium href="##" *ngIf="caso.estado == 'Nuevo'">Aceptar</a>
+                <button ion-button color="primary" item-end medium href="##" *ngIf="caso.estado == 'Nuevo'">
+                        <i class="material-icons">cancel</i>
+                        &nbsp;Rechazar
+                </button>
+                <button ion-button color="primary" (click)="mostrarAlertaCoseguro()"  item-end medium href="##" *ngIf="caso.estado == 'Nuevo'">
+                        <i class="material-icons">check</i>
+                        &nbsp;Aceptar
+                </button>
                 <button ion-button (click)="comoLlegar()" *ngIf="caso.estado == 'Aceptado'" >
                         <i class="material-icons">directions</i>
                         &nbsp;¡Vamos!

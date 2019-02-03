@@ -12,6 +12,7 @@ declare module 'casosUrgencias'{
         socio: Socio;
         direccion: Direccion;
         sintomas: string;
+        coseguro: string;
       }
       
       interface Direccion {
