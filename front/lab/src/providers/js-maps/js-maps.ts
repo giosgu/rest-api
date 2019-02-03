@@ -5,7 +5,7 @@ import { CasoUrgencia } from 'casosUrgencias';
 import { CasoPage } from '../../pages/caso/caso';
 import { directive } from '@angular/core/src/render3/instructions';
 import { ModalController } from 'ionic-angular';
-import { ModalMapCasoPage } from '../../pages/modal-map-caso/modal-map-caso';
+
 
 
 declare module 'googlemaps';
@@ -96,7 +96,7 @@ private armarLeyenda(legend:HTMLElement){
   }
 
   public abrirModalCaso(caso:CasoUrgencia){
-    var modalPage = this.modalCtrl.create(CasoPage, {"caso": caso}, {cssClass:"modal-map-caso"}); 
+    var modalPage = this.modalCtrl.create(CasoPage, {"caso": caso}); 
     modalPage.present(); 
   }    
   

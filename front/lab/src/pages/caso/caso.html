@@ -8,8 +8,8 @@
 
   <ion-navbar color="primary" >
     <ion-title>Caso: {{caso.numero}} ({{caso.estado}})
-        <i class="material-icons" (click)="cerrarModal()" item-righ > 
-                    close
+        <i class="material-icons" (click)="cerrarModal()" > 
+                close
         </i>
     </ion-title>
    </ion-navbar>
@@ -61,15 +61,17 @@
                             Crónico: {{caso.socio.marcas.cronico}}, Interno: {{caso.socio.marcas.socioInterno}}, PMI: {{caso.socio.marcas.pmi}}
                     </ion-item>
                 </ion-list>
-                <a button ion-button color="secondary" item-end medium href="##">Rechazar</a>
-                <a button ion-button color="primary" item-end medium href="##">Aceptar</a>
-                <button ion-button (click)="comoLlegar()">
+                <a button ion-button color="secondary" item-end medium href="##" *ngIf="caso.estado == 'Nuevo'">Rechazar</a>
+                <a button ion-button color="primary" item-end medium href="##" *ngIf="caso.estado == 'Nuevo'">Aceptar</a>
+                <button ion-button (click)="comoLlegar()" *ngIf="caso.estado == 'Aceptado'" >
                         <i class="material-icons">directions</i>
-                        &nbsp;Cómo llegar
+                        &nbsp;¡Vamos!
                 </button>
-<!--            <p>Dirección: {{caso.direccion.calle}} ({{caso.direccion.barrio}})   <ion-icon name="navigate" (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )" >  </ion-icon></p>
-                <a button ion-button (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )" color="primary" item-end medium>Mapa</a>
- -->       </div>
+                <button ion-button (click)="cerrarCaso()" *ngIf="caso.estado == 'Aceptado'" >
+                <ion-icon name="checkmark-circle-outline" *ngIf="caso.estado == 'Aceptado'"></ion-icon>        
+                <p>&nbsp; Cerrar Caso</p>
+               </button>
+       </div>
 
   
 </ion-content>

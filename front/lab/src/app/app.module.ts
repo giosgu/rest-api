@@ -24,9 +24,6 @@ import { MapsProvider } from '../providers/maps/maps';
 import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
 import { MapCasosPage } from '../pages/map-casos/map-casos';
-import { ModalMapCasoPage } from '../pages/modal-map-caso/modal-map-caso';
-
-
 
 @NgModule({
   declarations: [
@@ -39,8 +36,7 @@ import { ModalMapCasoPage } from '../pages/modal-map-caso/modal-map-caso';
     CasosPendientesPage,
     CasosAbiertosPage,
     CargaTabCasosPage,
-    MapCasosPage,
-    ModalMapCasoPage
+    MapCasosPage
   ],
   imports: [
     BrowserModule,
@@ -59,7 +55,6 @@ import { ModalMapCasoPage } from '../pages/modal-map-caso/modal-map-caso';
     CasosAbiertosPage,
     CargaTabCasosPage,
     MapCasosPage,
-    ModalMapCasoPage
   ],
   providers: [
     StatusBar,

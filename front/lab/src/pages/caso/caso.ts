@@ -48,5 +48,8 @@ export class CasoPage {
     window.open("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud,"_blank");
   }
 
+  cerrarCaso(){
+    alert("TODO")
+  }
  
 }
