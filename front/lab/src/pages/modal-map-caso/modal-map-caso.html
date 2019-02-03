@@ -1,0 +1,46 @@
+<!--
+  Generated template for the ModalMapCasoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+//https://material.io/tools/icons/?icon=directions&style=baseline
+-->
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Detalle Caso: {{caso.numero}}</ion-title>
+    
+    <ion-buttons end>
+      <a button ion-button (click)="cerrarModal()" item-end medium href="##">Cerrar</a>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list no-lines>
+    <ion-item>
+            <ion-icon name="information-circle" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
+            <p >Tipo de caso: {{caso.tipoVisita}}</p>
+            Hora de asignación: {{caso.horaAsignacion}}
+    </ion-item>
+<hr>
+    <ion-item>
+            <ion-icon name="person" color="primary" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
+            <p >Afiliado: {{caso.socio.numero}} ({{caso.socio.plan}})</p>
+            {{caso.socio.nombre}} {{caso.socio.apellido}} ({{caso.socio.edad}})
+    </ion-item>
+  <ion-item>
+        <ion-icon name="pin" color="twitter" item-start (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )"></ion-icon>
+        <p>{{caso.direccion.calle}} entre {{caso.direccion.entreCalles}} ({{caso.direccion.barrio}}), {{caso.direccion.ciudad}}</p>
+  </ion-item>
+</ion-list>
+</ion-content>
+<ion-footer color="primary">
+  <button ion-button (click)="comoLlegar()">
+    <i class="material-icons">directions</i>
+    &nbsp;Cómo llegar
+  </button>
+</ion-footer>

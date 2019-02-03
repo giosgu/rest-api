@@ -4,6 +4,9 @@ import {} from 'googlemaps';
 import { CasoUrgencia } from 'casosUrgencias';
 import { CasoPage } from '../../pages/caso/caso';
 import { directive } from '@angular/core/src/render3/instructions';
+import { ModalController } from 'ionic-angular';
+import { ModalMapCasoPage } from '../../pages/modal-map-caso/modal-map-caso';
+
 
 declare module 'googlemaps';
 
@@ -22,11 +25,13 @@ export class JsMapsProvider {
   private readonly PIN_VERDE = 'http://maps.google.com/mapfiles/ms/micons/green-dot.png'
   private readonly PIN_ROJO = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png'
   private readonly PIN_AZUL = 'http://maps.google.com/mapfiles/ms/micons/blue.png'
+ 
+  
 
 //  caso:caso;
 
-  constructor() {
-    
+  constructor( public modalCtrl: ModalController ) {
+
   }
 
   init(location, element){
@@ -39,15 +44,15 @@ export class JsMapsProvider {
     };
 
     this.map = new google.maps.Map(element.nativeElement, opts);
-    var legend:HTMLElement = document.getElementById('legend');
+   /* var legend:HTMLElement = document.getElementById('legend');
     this.armarLeyenda(legend)
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-    
+    */
   }
 
 private armarLeyenda(legend:HTMLElement){
-  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-  //http://maps.google.com/mapfiles/kml/paddle/grn-blank.png
+  
+  
       var icons = {
         visitaMedica: {
           name: 'Visita Médica',
@@ -77,9 +82,9 @@ private armarLeyenda(legend:HTMLElement){
         position: latLng,
     });
     marker.setIcon(this.definirIcono(caso))
-    let infoVindow:google.maps.InfoWindow = this.definirVentanaInfo(caso);
+    let that = this;
     marker.addListener('click', function() {
-      infoVindow.open(this.map, marker);
+     that.abrirModalCaso(caso)
     });
     this.markers.push(marker);
 
@@ -90,6 +95,11 @@ private armarLeyenda(legend:HTMLElement){
     });
   }
 
+  public abrirModalCaso(caso:CasoUrgencia){
+    var modalPage = this.modalCtrl.create(CasoPage, {"caso": caso}, {cssClass:"modal-map-caso"}); 
+    modalPage.present(); 
+  }    
+  
   private definirIcono(caso:CasoUrgencia):string{
     switch(caso.tipoVisita){
       case CasoPage.VISITA_MEDICA:{
@@ -101,21 +111,5 @@ private armarLeyenda(legend:HTMLElement){
     }
   }
 
-  private definirVentanaInfo(caso:CasoUrgencia):google.maps.InfoWindow{
-    var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading">Caso: '+caso.numero+'</h1>'+
-            '<div id="bodyContent">'+
-            '<p><b>Asignado: '+caso.horaAsignacion+'</b></p>' +
-            '<p>Tipo de Visita: '+caso.tipoVisita+', <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-            'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-            '(last visited June 22, 2009).</p>'+
-            '</div>'+
-            '</div>';
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-      return infowindow;
-  }
+ 
 }

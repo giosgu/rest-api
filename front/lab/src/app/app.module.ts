@@ -24,6 +24,7 @@ import { MapsProvider } from '../providers/maps/maps';
 import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
 import { MapCasosPage } from '../pages/map-casos/map-casos';
+import { ModalMapCasoPage } from '../pages/modal-map-caso/modal-map-caso';
 
 
 
@@ -38,7 +39,8 @@ import { MapCasosPage } from '../pages/map-casos/map-casos';
     CasosPendientesPage,
     CasosAbiertosPage,
     CargaTabCasosPage,
-    MapCasosPage
+    MapCasosPage,
+    ModalMapCasoPage
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { MapCasosPage } from '../pages/map-casos/map-casos';
     CasosPendientesPage,
     CasosAbiertosPage,
     CargaTabCasosPage,
-    MapCasosPage
+    MapCasosPage,
+    ModalMapCasoPage
   ],
   providers: [
     StatusBar,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { CasoUrgencia } from 'casosUrgencias';
 
 /**
@@ -23,8 +23,21 @@ export class CasoPage {
   static readonly VISITA_PSIQUIATRIA = "Visita Priquiatria";
 
   protected caso:CasoUrgencia
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private view:ViewController) {
     this.caso =navParams.get("caso");
+  }
+
+  cerrarModal(){
+    this.view.dismiss();
+  }
+
+  comoLlegar(){
+    this.abrirMapNavigation({latitud:this.caso.direccion.coordenadas.latitud, longitud:this.caso.direccion.coordenadas.longitud})
+  }
+
+  abrirMapNavigation(destino:any){
+    window.open("https://www.google.com/maps/dir/?api=1&destination="+destino.latitud+","+destino.longitud+"&travelmode=driving","_blank");
+    
   }
 
   ionViewDidLoad() {
@@ -35,4 +48,5 @@ export class CasoPage {
     window.open("https://www.google.com/maps/search/?api=1&query="+latitud+","+longitud,"_blank");
   }
 
+ 
 }

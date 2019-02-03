@@ -38,4 +38,10 @@ page-caso {
         font-size: 15px;
         color: #888;
     }
+
+    .cerrar{
+        float:right;
+        margin-right:10px; //added so that it isn't pushed right to the edge
+      //  margin-bottom: 20px; //doesn't work, makes the whole header wider somehow
+      }
 }

@@ -7,8 +7,13 @@
 <ion-header>
 
   <ion-navbar color="primary" >
-    <ion-title>Caso: {{caso.numero}} ({{caso.estado}})</ion-title>
-  </ion-navbar>
+    <ion-title>Caso: {{caso.numero}} ({{caso.estado}})
+        <i class="material-icons" (click)="cerrarModal()" item-righ > 
+                    close
+        </i>
+    </ion-title>
+   </ion-navbar>
+  
 
 </ion-header>
 
@@ -58,7 +63,10 @@
                 </ion-list>
                 <a button ion-button color="secondary" item-end medium href="##">Rechazar</a>
                 <a button ion-button color="primary" item-end medium href="##">Aceptar</a>
-                
+                <button ion-button (click)="comoLlegar()">
+                        <i class="material-icons">directions</i>
+                        &nbsp;Cómo llegar
+                </button>
 <!--            <p>Dirección: {{caso.direccion.calle}} ({{caso.direccion.barrio}})   <ion-icon name="navigate" (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )" >  </ion-icon></p>
                 <a button ion-button (click)="abrirMaps(caso.direccion.coordenadas.latitud,caso.direccion.coordenadas.longitud )" color="primary" item-end medium>Mapa</a>
  -->       </div>

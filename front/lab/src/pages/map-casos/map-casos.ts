@@ -55,9 +55,9 @@ export class MapCasosPage {
      }).catch((error) => {
        console.log('Error getting location', error);
      });
+
   }
 
-  
   marcarCasosAsignados(){
     this.mapsProvider.addMarkers(this.casos);
   }

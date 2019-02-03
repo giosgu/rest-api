@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { UserServiceProvider } from '../../providers/user-service/user-service';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import {CasoPage} from '../caso/caso'
 import {CasoUrgencia} from  'casosUrgencias'
@@ -19,16 +18,19 @@ export class CasosPage {
   msgSinCasos:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public userService: UserServiceProvider, public casosService: CasosServiceProvider) {
+    public casosService: CasosServiceProvider, public modalCtrl: ModalController) {
       this.inicializar(this.casos = navParams.get("casos"));
   }
 
   mostrarCaso($event, caso){
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(CasoPage, {
+  /*  this.navCtrl.push(CasoPage, {
       caso: caso
     });
-  }
+  */ 
+    var modalPage = this.modalCtrl.create(CasoPage, {"caso": caso}); 
+    modalPage.present(); 
+  }    
 
   protected inicializar(casos:CasoUrgencia[]){
     this.casos = casos;

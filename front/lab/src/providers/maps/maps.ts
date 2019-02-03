@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { JsMapsProvider } from './../js-maps/js-maps';
 import { NativeMapsProvider } from './../native-maps/native-maps';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { ModalController } from 'ionic-angular';
+
 /*
   Generated class for the MapsProvider provider.
 
@@ -13,13 +15,14 @@ import { GoogleMaps } from '@ionic-native/google-maps';
 export class MapsProvider {
 
   map: any;
-  constructor(public platform: Platform) {
+
+  constructor(public platform: Platform, public modalController: ModalController) {
     //descomentar cuando se agregue esto al proyecto
 //    if(this.platform.is('cordova') && 
 //      (this.platform.is('ios') || this.platform.is('android'))){
 //      this.map = new NativeMapsProvider(GoogleMaps);
  //   } else {
-      this.map = new JsMapsProvider();
+      this.map = new JsMapsProvider(modalController);
 //    }
   }
 
