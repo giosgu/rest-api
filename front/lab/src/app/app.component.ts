@@ -3,10 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { CargaTabCasosPage } from '../pages/carga-tab-casos/carga-tab-casos';
-import{MapCasosPage} from '../pages/map-casos/map-casos'
+import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,9 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Casos', component: CargaTabCasosPage },
-      { title: 'Notificaciones', component: HomePage },
-      { title: 'Chat', component: ListPage },
-      { title: 'Maps', component: MapCasosPage },
+      { title: 'Notificaciones', component: NotificacionesPage },
     ];
 
   }

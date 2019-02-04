@@ -14,6 +14,7 @@ import { TabCasosPage } from '../pages/tab-casos/tab-casos';
 import { CasosPendientesPage } from '../pages/casos/casosPendientes';
 import { CasosAbiertosPage } from '../pages/casos/casosAbiertos';
 import { CargaTabCasosPage } from '../pages/carga-tab-casos/carga-tab-casos';
+import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -24,6 +25,8 @@ import { MapsProvider } from '../providers/maps/maps';
 import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
 import { MapCasosPage } from '../pages/map-casos/map-casos';
+import { NotificacionesServiceProvider } from '../providers/notificaciones-service/notificaciones-service';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { MapCasosPage } from '../pages/map-casos/map-casos';
     CasosPendientesPage,
     CasosAbiertosPage,
     CargaTabCasosPage,
-    MapCasosPage
+    MapCasosPage,
+    NotificacionesPage,
+
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,7 @@ import { MapCasosPage } from '../pages/map-casos/map-casos';
     CasosAbiertosPage,
     CargaTabCasosPage,
     MapCasosPage,
+    NotificacionesPage
   ],
   providers: [
     StatusBar,
@@ -66,7 +72,8 @@ import { MapCasosPage } from '../pages/map-casos/map-casos';
     MapsProvider,
     JsMapsProvider,
     NativeMapsProvider,
-    GoogleMaps
+    GoogleMaps,
+    NotificacionesServiceProvider,
   ]
 })
 export class AppModule {}

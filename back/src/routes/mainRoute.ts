@@ -2,6 +2,7 @@ import * as express from "express";
 import { mainController } from "../controllers/MainController";
 import { guidoController } from "../controllers/guidoController";
 import {casoController} from "../controllers/casoController"
+import {notificacionesController} from "../controllers/notificacionesControler"
 
 class MainRoutes {
   public router: express.Router = express.Router();
@@ -23,6 +24,10 @@ class MainRoutes {
     this.router.get("/casos",(req: express.Request, res: express.Response) =>
         casoController.get(req, res)
     );
+    this.router.get("/notificaciones",(req: express.Request, res: express.Response) =>
+        notificacionesController.get(req,res)
+    );
+
   }
 }
 

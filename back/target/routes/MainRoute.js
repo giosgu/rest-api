@@ -11,6 +11,7 @@ const express = __importStar(require("express"));
 const MainController_1 = require("../controllers/MainController");
 const guidoController_1 = require("../controllers/guidoController");
 const casoController_1 = require("../controllers/casoController");
+const notificacionesControler_1 = require("../controllers/notificacionesControler");
 class MainRoutes {
     constructor() {
         this.router = express.Router();
@@ -21,6 +22,7 @@ class MainRoutes {
         this.router.get("/guido", (req, res) => guidoController_1.guidoController.root(req, res));
         this.router.post("/guido", (req, res) => guidoController_1.guidoController.post(req, res));
         this.router.get("/casos", (req, res) => casoController_1.casoController.get(req, res));
+        this.router.get("/notificaciones", (req, res) => notificacionesControler_1.notificacionesController.get(req, res));
     }
 }
 exports.mainRoutes = new MainRoutes().router;

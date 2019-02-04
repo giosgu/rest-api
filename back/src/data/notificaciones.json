@@ -1,0 +1,26 @@
+{
+    "Notificaciones": [
+        {
+            "tipoNotificacion":"CIERRE_CASO",
+            "fechaNotificacion":"04022019 10:30:45",
+            "titulo":"Cierre de caso",
+            "mensaje":"¿Se puede cerrar el caso 123456?",
+            "ttl":205
+        },
+        {
+            "tipoNotificacion":"NOTIFICACION_MANUAL",
+            "fechaNotificacion":"04022019 10:30:45",
+            "titulo":"Aviso",
+            "mensaje":"Tengan en cuenta que aumenta el valor de coseguro a $435 a partir de mañana",
+            "ttl":205
+        },
+        {
+            "tipoNotificacion":"CIERRE_CASO",
+            "fechaNotificacion":"04022019 10:30:45",
+            "titulo":"Cierre de caso",
+            "mensaje":"¿Se puede cerrar el caso 123456?",
+            "ttl":205
+        }
+    ]
+}
+    
