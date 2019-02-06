@@ -4,6 +4,7 @@ import { JsMapsProvider } from './../js-maps/js-maps';
 import { NativeMapsProvider } from './../native-maps/native-maps';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ModalController } from 'ionic-angular';
+import { HttpHelperProvider } from '../http-helper/http-helper';
 
 /*
   Generated class for the MapsProvider provider.
@@ -17,15 +18,14 @@ export class MapsProvider {
   map: any;
 
   
-  constructor(public platform: Platform, public app: App) {
-    //descomentar cuando se agregue esto al proyecto
-//    if(this.platform.is('cordova') && 
-//      (this.platform.is('ios') || this.platform.is('android'))){
-//      this.map = new NativeMapsProvider(GoogleMaps);
- //   } else {
-      this.map = new JsMapsProvider(app);
-      
-//    }
+  constructor(public platform: Platform, public app: App, private helper:HttpHelperProvider, googleMaps:GoogleMaps) {
+    if(helper.isCordova()){
+        this.map = new NativeMapsProvider(googleMaps, app);
+    } else {
+        this.map = new JsMapsProvider(app);
+        
+    }
+   // this.map = new JsMapsProvider(app);
   }
 
   init(location, element){
