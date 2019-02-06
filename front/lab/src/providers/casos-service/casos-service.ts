@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHelperProvider } from '../http-helper/http-helper';
 
 /*
   Generated class for the CasosServiceProvider provider.
@@ -10,11 +10,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class CasosServiceProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello CasosServiceProvider Provider');
+  constructor(private helper: HttpHelperProvider) {
+    
   }
 
   getCasos(){
-    return this.http.get("/api/casos");
+    return this.helper.resolveGetUrl("/casos");
   }
 }

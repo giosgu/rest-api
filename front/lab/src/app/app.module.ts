@@ -26,7 +26,7 @@ import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
 import { MapCasosPage } from '../pages/map-casos/map-casos';
 import { NotificacionesServiceProvider } from '../providers/notificaciones-service/notificaciones-service';
-
+import { HttpHelperProvider } from '../providers/http-helper/http-helper';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,7 @@ import { NotificacionesServiceProvider } from '../providers/notificaciones-servi
     CasosAbiertosPage,
     CargaTabCasosPage,
     MapCasosPage,
-    NotificacionesPage
+    NotificacionesPage,
   ],
   providers: [
     StatusBar,
@@ -74,6 +74,7 @@ import { NotificacionesServiceProvider } from '../providers/notificaciones-servi
     NativeMapsProvider,
     GoogleMaps,
     NotificacionesServiceProvider,
+    HttpHelperProvider
   ]
 })
 export class AppModule {}

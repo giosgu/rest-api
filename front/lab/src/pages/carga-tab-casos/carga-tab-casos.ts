@@ -3,6 +3,7 @@ import {CasosServiceProvider} from '../../providers/casos-service/casos-service'
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import {TabCasosPage} from '../tab-casos/tab-casos';
 import {CasoUrgencia} from  'casosUrgencias'
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 /**
@@ -36,8 +37,13 @@ export class CargaTabCasosPage {
           this.navCtrl.setRoot(TabCasosPage, { 'casos': this.casos })
 
         },
-        (error) =>{
-          alert("error en getCasos " + error);
+        (error:HttpErrorResponse) =>{
+          if(error.status == 500){
+            alert("El servidor no se encuentra disponible, intente más tarde: " + error.message + " " + error.error);
+          }else{
+            alert("Error: " + error.status + " " + error.message )
+          }
+          loader.dismiss();
         }
       )
   

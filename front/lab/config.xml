@@ -87,4 +87,5 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyClNXOpTljcDJk2I1qkkHplpwxemBkMxLk" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <engine name="android" spec="^7.1.4" />
 </widget>
