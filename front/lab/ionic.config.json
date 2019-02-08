@@ -7,7 +7,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://localhost:3000"
+      "proxyUrl": "http://10.66.113.47:3000"
     }
   ]
 }

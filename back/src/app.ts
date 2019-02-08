@@ -19,6 +19,11 @@ class App {
         this.app.disable('etag');
         //support application/x-www-form-urlencoded post data
         this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
         this.app.use("/", mainRoutes);
         
     }

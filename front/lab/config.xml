@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
+    <name>Osde Urgencias</name>
+    <description>aplicación para prestadores de Urgencias</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -40,6 +40,7 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <preference name="StatusBarBackgroundColor" value="#488AFF" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -87,4 +88,6 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyClNXOpTljcDJk2I1qkkHplpwxemBkMxLk" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-request-location-accuracy" spec="~2.2.3" />
+    <engine name="android" spec="^7.1.4" />
 </widget>

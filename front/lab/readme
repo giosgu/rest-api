@@ -1,0 +1,4 @@
+Android: 
+La guía para setup, disponible en: https://cordova.apache.org/docs/en/latest/guide/platforms/android/ 
+Requiere la instalación previa de Gradle. Se utilizó al versión 5.2
+El nivel de de api de Android configurada es el 19

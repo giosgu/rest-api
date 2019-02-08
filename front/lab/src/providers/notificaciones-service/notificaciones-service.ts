@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpHelperProvider } from '../http-helper/http-helper';
 
 /*
   Generated class for the NotificacionesServiceProvider provider.
@@ -10,12 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class NotificacionesServiceProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, private helper:HttpHelperProvider) {
     console.log('Hello NotificacionesServiceProvider Provider');
   }
 
   getNotificaciones(){
-    return this.http.get("/api/notificaciones");
+    return this.helper.resolveGetUrl("/notificaciones");
   }
 
 }

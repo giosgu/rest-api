@@ -15,6 +15,7 @@ import { CasosPendientesPage } from '../pages/casos/casosPendientes';
 import { CasosAbiertosPage } from '../pages/casos/casosAbiertos';
 import { CargaTabCasosPage } from '../pages/carga-tab-casos/carga-tab-casos';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { LocationAccuracyPage } from '../pages/location-accuracy/location-accuracy';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -26,7 +27,8 @@ import { JsMapsProvider } from '../providers/js-maps/js-maps';
 import { NativeMapsProvider } from '../providers/native-maps/native-maps';
 import { MapCasosPage } from '../pages/map-casos/map-casos';
 import { NotificacionesServiceProvider } from '../providers/notificaciones-service/notificaciones-service';
-
+import { HttpHelperProvider } from '../providers/http-helper/http-helper';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { NotificacionesServiceProvider } from '../providers/notificaciones-servi
     CargaTabCasosPage,
     MapCasosPage,
     NotificacionesPage,
+    LocationAccuracyPage,
 
   ],
   imports: [
@@ -60,7 +63,8 @@ import { NotificacionesServiceProvider } from '../providers/notificaciones-servi
     CasosAbiertosPage,
     CargaTabCasosPage,
     MapCasosPage,
-    NotificacionesPage
+    NotificacionesPage,
+    LocationAccuracyPage,
   ],
   providers: [
     StatusBar,
@@ -74,6 +78,8 @@ import { NotificacionesServiceProvider } from '../providers/notificaciones-servi
     NativeMapsProvider,
     GoogleMaps,
     NotificacionesServiceProvider,
+    HttpHelperProvider,
+    LocationAccuracy
   ]
 })
 export class AppModule {}
