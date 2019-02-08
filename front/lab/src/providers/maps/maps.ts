@@ -5,6 +5,8 @@ import { NativeMapsProvider } from './../native-maps/native-maps';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { ModalController } from 'ionic-angular';
 import { HttpHelperProvider } from '../http-helper/http-helper';
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 /*
   Generated class for the MapsProvider provider.
@@ -18,7 +20,8 @@ export class MapsProvider {
   map: any;
 
   
-  constructor(public platform: Platform, public app: App, private helper:HttpHelperProvider, googleMaps:GoogleMaps) {
+  constructor(public platform: Platform, public app: App, private helper:HttpHelperProvider, 
+    googleMaps:GoogleMaps, geolocation:Geolocation, private locationAccuracy: LocationAccuracy) {
     if(helper.isCordova()){
         this.map = new NativeMapsProvider(googleMaps, app);
     } else {
@@ -39,4 +42,5 @@ export class MapsProvider {
   public addMarkers(array:any[]){
        this.map.addMarkers(array)
    }
+   
 }

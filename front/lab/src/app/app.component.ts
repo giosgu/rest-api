@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { CargaTabCasosPage } from '../pages/carga-tab-casos/carga-tab-casos';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { LocationAccuracyPage } from '../pages/location-accuracy/location-accuracy';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,6 +24,7 @@ export class MyApp {
     this.pages = [
       { title: 'Casos', component: CargaTabCasosPage },
       { title: 'Notificaciones', component: NotificacionesPage },
+      { title: 'Location', component: LocationAccuracyPage },
     ];
 
   }
