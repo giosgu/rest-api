@@ -25,7 +25,7 @@ export class CargaTabCasosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, 
       public loadingCtrl: LoadingController, public casosService: CasosServiceProvider) {
     let loader = this.loadingCtrl.create({
-      content: 'Obteniendo Casos...',
+      content: 'Cargando Casos...',
     });
 
     loader.present().then(() => {
