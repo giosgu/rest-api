@@ -43,4 +43,7 @@ export class MapsProvider {
        this.map.addMarkers(array)
    }
    
+   public addMarkerCurrentPosition(geolocation:Geolocation){
+     this.map.addMarkerCurrentPosition(geolocation)
+   }
 }
