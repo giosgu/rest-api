@@ -29,7 +29,8 @@ import { MapCasosPage } from '../pages/map-casos/map-casos';
 import { NotificacionesServiceProvider } from '../providers/notificaciones-service/notificaciones-service';
 import { HttpHelperProvider } from '../providers/http-helper/http-helper';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
-
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
+ 
 @NgModule({
   declarations: [
     MyApp,
@@ -79,7 +80,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
     GoogleMaps,
     NotificacionesServiceProvider,
     HttpHelperProvider,
-    LocationAccuracy
+    LocationAccuracy,
+    LaunchNavigator
   ]
 })
 export class AppModule {}
