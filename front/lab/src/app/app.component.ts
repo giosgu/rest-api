@@ -59,7 +59,7 @@ export class MyApp {
 
       if (res.isEnabled) {
         
-        console.log('We have permission to send push notifications');
+        console.log('El dispositivo tiene permisos para enviarle notificaciones push');
         
         const pushObject: PushObject = this.push.init(options);
         
@@ -74,7 +74,7 @@ export class MyApp {
           if (data.additionalData.foreground) {
             // if application open, show popup
             let confirmAlert = this.alertCtrl.create({
-              title: 'New Notification',
+              title: data.title,
               message: data.message,
               buttons: [{
                 text: 'Ignore',

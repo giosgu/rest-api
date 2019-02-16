@@ -42,6 +42,16 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
         <preference name="StatusBarBackgroundColor" value="#488AFF" />
         <resource-file src="google-services.json" target="google-services.json" />
+        <resource-file src="resources/android/icon/material-done-icon/drawable-hdpi/baseline_done_black_18.png" target="app/src/main/res/drawable-hdpi/baseline_done_black_18.png" />
+        <resource-file src="resources/android/icon/material-done-icon/drawable-mdpi/baseline_done_black_18.png" target="app/src/main/res/drawable-mdpi/baseline_done_black_18.png" />
+        <resource-file src="resources/android/icon/material-done-icon/drawable-xhdpi/baseline_done_black_18.png" target="app/src/main/res/drawable-xhdpi/baseline_done_black_18.png" />
+        <resource-file src="resources/android/icon/material-done-icon/drawable-xxhdpi/baseline_done_black_18.png" target="app/src/main/res/drawable-xxhdpi/baseline_done_black_18.png" />
+        <resource-file src="resources/android/icon/material-done-icon/drawable-xxxhdpi/baseline_done_black_18.png" target="app/src/main/res/drawable-xxxhdpi/baseline_done_black_18.png" />
+        <resource-file src="resources/android/icon/material-visibility-black/drawable-hdpi/baseline_visibility_black_18.png" target="app/src/main/res/drawable-hdpi/baseline_visibility_black_18.png" />
+        <resource-file src="resources/android/icon/material-visibility-black/drawable-mdpi/baseline_visibility_black_18.png" target="app/src/main/res/drawable-mdpi/baseline_visibility_black_18.png" />
+        <resource-file src="resources/android/icon/material-visibility-black/drawable-xhdpi/baseline_visibility_black_18.png" target="app/src/main/res/drawable-xhdpi/baseline_visibility_black_18.png" />
+        <resource-file src="resources/android/icon/material-visibility-black/drawable-xxhdpi/baseline_visibility_black_18.png" target="app/src/main/res/drawable-xxhdpi/baseline_visibility_black_18.png" />
+        <resource-file src="resources/android/icon/material-visibility-black/drawable-xxxhdpi/baseline_visibility_black_18.png" target="app/src/main/res/drawable-xxxhdpi/baseline_visibility_black_18.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
