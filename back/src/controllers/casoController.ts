@@ -15,6 +15,15 @@ export class CasoController{
         res.status(200).send(JSON.stringify(obj));
         
       }
+
+      public getCaso(req: Request, res: Response, numeroCaso:string) {
+        console.log(new Date() + " GET /caso/  " + numeroCaso);
+        const path = require("path");
+        var obj = JSON.parse(fs.readFileSync(path.resolve("../back/src/data/casos.json"), 'utf8'));
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).send(JSON.stringify(obj));
+        
+      } 
 }
 
 export const casoController = new CasoController();

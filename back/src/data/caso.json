@@ -1,0 +1,34 @@
+{
+    "numero": "123456",
+    "tipoVisita": "Visita Brevedad",
+    "horaAsignacion": "10:15",
+    "estado":"Nuevo",
+    "coseguro":"250",
+    "socio": {
+        "numero": "30015824984",
+        "plan":"410",
+        "nombre": "Guido",
+        "apellido": "Giosa",
+        "edad": "34",
+        "telefono": "1554636117",
+        "marcas":{
+            "cronico":"si",
+            "socioInterno":"si",
+            "pmi":"no"
+        }
+    },
+    "direccion": {
+        "calle": "Pueyrredon 2549 10°A",
+        "entreCalles": "Marcelo T. de Alvear y Santa Fe",
+        "ciudad": "CABA",
+        "provincia": "CABA",
+        "barrio":"Recoleta",
+        "codigoPostal": "1213",
+        "coordenadas": {
+            "latitud": "-34.584805",
+            "longitud": "-58.392392"
+        }
+    },"sintomas":"dolor de cabeza"
+        
+
+}
