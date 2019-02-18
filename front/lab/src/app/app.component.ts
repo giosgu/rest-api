@@ -86,13 +86,13 @@ export class MyApp {
                 let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
                 let nuevoCaso:CasoUrgencia = CasosUtils.getCaso(casos,fcmData.additionalData.numero )
                 //invoco la vista de casos
-                this.nav.push(CasoPage, {
-                  caso: nuevoCaso
-                });
-                loader.dismiss();
                 //publico evento de actualización de casos
                 this.events.publish('casos:actualizacion', casos, Date.now());
                 console.log("Publicado evento: 'casos:actualizacion'")
+                loader.dismiss();
+                this.nav.push(CasoPage, {
+                  caso: nuevoCaso
+                });
               }
             )
           });
