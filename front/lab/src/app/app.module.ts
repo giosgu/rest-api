@@ -31,6 +31,7 @@ import { HttpHelperProvider } from '../providers/http-helper/http-helper';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Push } from '@ionic-native/push';
+import { CasosUtils } from '../providers/utils/casosUtils';
  
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { Push } from '@ionic-native/push';
     HttpHelperProvider,
     LocationAccuracy,
     LaunchNavigator, 
-    Push
+    Push,
+    CasosUtils
   ]
 })
 export class AppModule {}

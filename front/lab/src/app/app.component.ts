@@ -8,7 +8,6 @@ import { CargaTabCasosPage } from '../pages/carga-tab-casos/carga-tab-casos';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { LocationAccuracyPage } from '../pages/location-accuracy/location-accuracy';
 import { CasosServiceProvider } from '../providers/casos-service/casos-service';
-import { CasoUrgencia } from 'casosUrgencias';
 import { CasoPage } from '../pages/caso/caso';
 
 @Component({
@@ -72,24 +71,20 @@ export class MyApp {
         });
 
         //Action button "verCaso"
-        pushObject.on('verCaso').subscribe((data: any) => {
+        pushObject.on('verCaso').subscribe((fcmData: any) => {
           console.log(new Date() + " opción mensaje push: verCaso");
           let loader = this.loadingCtrl.create({
-            content: 'Cargando el caso ' +data.additionalData.numero,
+            content: 'Cargando el caso ' + fcmData.additionalData.numero,
           });
           loader.present().then(() => {
-            this.casoService.getCaso(data.additionalData.numero).subscribe(
-              (casoUrgencia:CasoUrgencia) => { // Success
-                console.log(new Date() +" Data succes")
-
-                
-                console.log("Se obtuvo el caso: " + casoUrgencia.numero )
-                loader.dismiss();
-                //invoco la vista de casos
-                this.nav.push(CasoPage, {
-                  caso: casoUrgencia
-                });
-              }
+            this.casoService.getCaso(fcmData.additionalData.numero).subscribe(
+            (nuevoCaso) => { // Success
+              loader.dismiss();
+              //invoco la vista de casos
+              this.nav.push(CasoPage, {
+                caso: nuevoCaso
+              });
+            }
             )
           });
         });
@@ -103,10 +98,10 @@ export class MyApp {
               title: data.title,
               message: data.message,
               buttons: [{
-                text: 'Ignore',
+                text: 'Ignorar',
                 role: 'cancel'
               }, {
-                text: 'View',
+                text: 'Ver Caso',
                 handler: () => {
                   //TODO: Your logic here
                   //this.nav.push(DetailsPage, { message: data.message });
