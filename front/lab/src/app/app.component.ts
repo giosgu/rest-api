@@ -9,6 +9,9 @@ import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { LocationAccuracyPage } from '../pages/location-accuracy/location-accuracy';
 import { CasosServiceProvider } from '../providers/casos-service/casos-service';
 import { CasoPage } from '../pages/caso/caso';
+import { Events } from 'ionic-angular';
+import { CasoUrgencia } from 'casosUrgencias';
+import { CasosUtils } from '../providers/utils/casosUtils';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,7 +23,8 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private push: Push,
-    public alertCtrl: AlertController, private casoService:CasosServiceProvider, public loadingCtrl: LoadingController) {
+    public alertCtrl: AlertController, private casoService:CasosServiceProvider, public loadingCtrl: LoadingController,
+    public events: Events) {
     
       this.initializeApp();
 
@@ -77,14 +81,19 @@ export class MyApp {
             content: 'Cargando el caso ' + fcmData.additionalData.numero,
           });
           loader.present().then(() => {
-            this.casoService.getCaso(fcmData.additionalData.numero).subscribe(
-            (nuevoCaso) => { // Success
-              loader.dismiss();
-              //invoco la vista de casos
-              this.nav.push(CasoPage, {
-                caso: nuevoCaso
-              });
-            }
+            this.casoService.getCasos().subscribe(
+              (casosUrgencias) => { // Success
+                let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
+                let nuevoCaso:CasoUrgencia = CasosUtils.getCaso(casos,fcmData.additionalData.numero )
+                //invoco la vista de casos
+                this.nav.push(CasoPage, {
+                  caso: nuevoCaso
+                });
+                loader.dismiss();
+                //publico evento de actualización de casos
+                this.events.publish('casos:actualizacion', casos, Date.now());
+                console.log("Publicado evento: 'casos:actualizacion'")
+              }
             )
           });
         });

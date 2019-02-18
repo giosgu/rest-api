@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import {CasoPage} from '../caso/caso'
 import {CasoUrgencia} from  'casosUrgencias'
+import { Events } from 'ionic-angular';
+import { ChangeDetectorRef } from "@angular/core";
 
 @Component({
   selector: 'page-casos',
@@ -16,10 +18,20 @@ export class CasosPage {
   caso:CasoUrgencia;
   titulo:string
   msgSinCasos:string;
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public casosService: CasosServiceProvider) {
+    public casosService: CasosServiceProvider,public events: Events, 
+    public changeDetector: ChangeDetectorRef) {
       this.inicializar(this.casos = navParams.get("casos"));
+      this.suscribirEvento();
+    }
+    
+  suscribirEvento() {
+    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
+      console.log("casos.ts, evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+      this.casos = this.filtrarParaChangeDetector(casos);
+      this.changeDetector.detectChanges();
+    });
   }
 
   mostrarCaso($event, caso){
@@ -49,5 +61,9 @@ export class CasosPage {
         }
     }
     return casosFiltrados;
+  }
+
+  protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{
+    return casos;
   }
 }
