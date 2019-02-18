@@ -19,7 +19,7 @@ class CasoController {
     getCaso(req, res, numeroCaso) {
         console.log(new Date() + " GET /caso/  " + numeroCaso);
         const path = require("path");
-        var obj = JSON.parse(fs.readFileSync(path.resolve("../back/src/data/casos.json"), 'utf8'));
+        var obj = JSON.parse(fs.readFileSync(path.resolve("../back/src/data/caso.json"), 'utf8'));
         res.setHeader('Content-Type', 'application/json');
         res.status(200).send(JSON.stringify(obj));
     }

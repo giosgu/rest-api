@@ -75,19 +75,19 @@ export class MyApp {
         pushObject.on('verCaso').subscribe((data: any) => {
           console.log(new Date() + " opción mensaje push: verCaso");
           let loader = this.loadingCtrl.create({
-            content: 'Cargando el caso ' +data.numero,
+            content: 'Cargando el caso ' +data.additionalData.numero,
           });
           loader.present().then(() => {
-            this.casoService.getCaso(data.numero).subscribe(
-              (data) => { // Success
+            this.casoService.getCaso(data.additionalData.numero).subscribe(
+              (casoUrgencia:CasoUrgencia) => { // Success
                 console.log(new Date() +" Data succes")
-                let arrayCaso = (data['CasoUrgencias']);
-                let nuevoCaso:CasoUrgencia = arrayCaso[0];
-                console.log("Se obtuvo el caso: " + nuevoCaso.numero )
+
+                
+                console.log("Se obtuvo el caso: " + casoUrgencia.numero )
                 loader.dismiss();
                 //invoco la vista de casos
                 this.nav.push(CasoPage, {
-                  caso: nuevoCaso
+                  caso: casoUrgencia
                 });
               }
             )
