@@ -30,6 +30,8 @@ import { NotificacionesServiceProvider } from '../providers/notificaciones-servi
 import { HttpHelperProvider } from '../providers/http-helper/http-helper';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
+import { Push } from '@ionic-native/push';
+import { CasosUtils } from '../providers/utils/casosUtils';
  
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
     NotificacionesServiceProvider,
     HttpHelperProvider,
     LocationAccuracy,
-    LaunchNavigator
+    LaunchNavigator, 
+    Push,
+    CasosUtils
   ]
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 import { CasosPage } from '../casos/casos';
+import { CasoUrgencia } from 'casosUrgencias';
 
 @Component({
     selector: 'page-casos',
@@ -14,5 +14,9 @@ import { CasosPage } from '../casos/casos';
         this.titulo = "Casos Pendientes"
     }
     
+    protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{
+      return this.casos = this.filtrarCasos(casos, "Nuevo");
+    }
+
   }
     

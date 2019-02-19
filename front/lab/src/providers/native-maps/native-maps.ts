@@ -1,6 +1,6 @@
 import {CasoPage} from '../../pages/caso/caso';
 import { Injectable } from '@angular/core';
-import { GoogleMaps, LatLng, GoogleMapsEvent, Marker, GoogleMapsAnimation, HtmlInfoWindow } from '@ionic-native/google-maps';
+import { GoogleMaps, LatLng, GoogleMapsEvent, Marker, GoogleMapsAnimation, HtmlInfoWindow, GoogleMap } from '@ionic-native/google-maps';
 import { CasoUrgencia } from 'casosUrgencias';
 import { App } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -8,7 +8,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 @Injectable()
 export class NativeMapsProvider {
 
-  map: any;
+  map: GoogleMap;
 
   //Documentación
   //https://github.com/ionic-team/ionic-native-google-maps/blob/master/documents/README.md
@@ -107,4 +107,7 @@ export class NativeMapsProvider {
     });
   }
 
+  public clearMarkers():Promise<any>{
+    return this.map.clear()
+  }
 }

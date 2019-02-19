@@ -10,7 +10,7 @@
   <ion-content>
     
     <ion-list>
-      <ion-item *ngFor="let caso of casos"  (click)="mostrarCaso($event, caso)">
+      <ion-item *ngFor="let caso of casos"  (click)="mostrarCaso($event, caso)" >
         <h2>{{caso.numero }} - {{ caso.direccion.calle | uppercase }} ({{caso.direccion.barrio}})</h2>
         <p>Edad: {{ caso.socio.edad }} | {{caso.horaAsignacion}}</p>
       </ion-item>

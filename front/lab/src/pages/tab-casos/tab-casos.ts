@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import {CasosAbiertosPage} from '../casos/casosAbiertos';
 import {CasosPage} from '../casos/casos';
 import {CasosPendientesPage} from '../casos/casosPendientes';
@@ -19,7 +19,7 @@ import { CasoUrgencia } from 'casosUrgencias';
   selector: 'page-tab-casos',
   templateUrl: 'tab-casos.html',
 })
-export class TabCasosPage {
+export class TabCasosPage implements OnInit {
 
   casos: CasoUrgencia[] = [];
   tab1Root :any = CasosPage;
@@ -28,9 +28,23 @@ export class TabCasosPage {
   tab4Root :any = MapCasosPage;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public casosService: CasosServiceProvider, public loadingCtrl: LoadingController) {
+    public casosService: CasosServiceProvider, public loadingCtrl: LoadingController, 
+    public events: Events, public changeDetector: ChangeDetectorRef) {
       this.casos = this.navParams.get("casos");
-   
+  }
+
+  ngOnInit() {
+    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
+      console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+      this.casos = casos;
+      this.changeDetector.detectChanges();
+    });
+    
+  }
+
+  ngOnDestroy() {
+    this.events.unsubscribe('casos:actualizacion');
+    console.log(this.constructor.name + ": desuscripto a evento casos:actualizacion")
   }
 
 }

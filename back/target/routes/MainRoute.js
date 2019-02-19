@@ -23,6 +23,10 @@ class MainRoutes {
         this.router.post("/guido", (req, res) => guidoController_1.guidoController.post(req, res));
         this.router.get("/casos", (req, res) => casoController_1.casoController.get(req, res));
         this.router.get("/notificaciones", (req, res) => notificacionesControler_1.notificacionesController.get(req, res));
+        this.router.get('/caso/:numeroCaso', function (req, res, next) {
+            var numeroCaso = req.params.numeroCaso;
+            casoController_1.casoController.getCaso(req, res, numeroCaso);
+        });
     }
 }
 exports.mainRoutes = new MainRoutes().router;

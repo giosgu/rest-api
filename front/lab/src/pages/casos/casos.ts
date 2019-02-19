@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import {CasoPage} from '../caso/caso'
 import {CasoUrgencia} from  'casosUrgencias'
+import { Events } from 'ionic-angular';
+import { ChangeDetectorRef } from "@angular/core";
 
 @Component({
   selector: 'page-casos',
   templateUrl: 'casos.html'
 })
-export class CasosPage {
+export class CasosPage implements OnInit {
   selectedItem: any;
   icons: string[];
   users: any[] = [];
@@ -16,10 +18,29 @@ export class CasosPage {
   caso:CasoUrgencia;
   titulo:string
   msgSinCasos:string;
-
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public casosService: CasosServiceProvider) {
+    public casosService: CasosServiceProvider,public events: Events, 
+    public changeDetector: ChangeDetectorRef) {
       this.inicializar(this.casos = navParams.get("casos"));
+    }
+    
+  ngOnInit() {
+      this.suscribirEvento();
+      
+  }
+
+  ngOnDestroy() {
+    this.events.unsubscribe('casos:actualizacion');
+    console.log(this.constructor.name + ": desuscripto a evento casos:actualizacion")
+  }
+
+  suscribirEvento() {
+    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
+      console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+      this.casos = this.filtrarParaChangeDetector(casos);
+      this.changeDetector.detectChanges();
+    });
   }
 
   mostrarCaso($event, caso){
@@ -49,5 +70,9 @@ export class CasosPage {
         }
     }
     return casosFiltrados;
+  }
+
+  protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{
+    return casos;
   }
 }

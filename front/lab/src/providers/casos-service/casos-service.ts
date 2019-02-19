@@ -17,4 +17,8 @@ export class CasosServiceProvider {
   getCasos(){
     return this.helper.resolveGetUrl("/casos");
   }
+
+  getCaso(numeroCaso:string){
+    return this.helper.resolveGetUrl("/caso/"+numeroCaso);
+  }
 }

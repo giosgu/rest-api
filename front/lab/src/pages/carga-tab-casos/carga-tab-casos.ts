@@ -35,6 +35,7 @@ export class CargaTabCasosPage {
           this.casos = data['CasoUrgencias'];
           loader.dismiss();
           this.navCtrl.setRoot(TabCasosPage, { 'casos': this.casos })
+          
 
         },
         (error:HttpErrorResponse) =>{

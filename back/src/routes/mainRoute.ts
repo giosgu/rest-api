@@ -28,7 +28,10 @@ class MainRoutes {
     this.router.get("/notificaciones",(req: express.Request, res: express.Response) =>
         notificacionesController.get(req,res)
     );
-
+    this.router.get('/caso/:numeroCaso', function (req, res, next) {
+      var numeroCaso = req.params.numeroCaso;
+        casoController.getCaso(req, res, numeroCaso);
+  });
   }
 }
 
