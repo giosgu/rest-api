@@ -38,8 +38,8 @@ export class CasosPage implements OnInit {
   suscribirEvento() {
     this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
       console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
-      this.casos = casos;
-      console.log( this.constructor.name + ": evento 'casos:actualizacion' finalizó el procesamiento")
+      this.casos = this.filtrarParaChangeDetector(casos);
+      this.changeDetector.detectChanges();
     });
   }
 
