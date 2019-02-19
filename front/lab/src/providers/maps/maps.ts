@@ -46,4 +46,8 @@ export class MapsProvider {
    public addMarkerCurrentPosition(geolocation:Geolocation){
      this.map.addMarkerCurrentPosition(geolocation)
    }
+
+   public clearMarkers():Promise<any>{
+     return this.map.clearMarkers();
+   }
 }

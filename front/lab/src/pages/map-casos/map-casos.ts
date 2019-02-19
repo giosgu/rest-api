@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MapsProvider } from './../../providers/maps/maps';
 import { CasoUrgencia } from 'casosUrgencias';
@@ -18,7 +18,7 @@ declare var google;
   selector: 'page-map-casos',
   templateUrl: 'map-casos.html',
 })
-export class MapCasosPage {
+export class MapCasosPage implements OnInit {
   
   location: {
     latitude: number,
@@ -26,18 +26,33 @@ export class MapCasosPage {
   };
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  //representa la lista de marcadores del mapa
   public markers: any[] = [];
+  //Array en memoria con los casos de urgencia
   protected casos: CasoUrgencia[] = [];
+  //boolean para manejar la necesidad de refrescar la lista
+  private isListaCasosActualizada = false; 
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public geolocation: Geolocation, public mapsProvider: MapsProvider, private locationAccuracy: LocationAccuracy) {
+    public geolocation: Geolocation, public mapsProvider: MapsProvider, private locationAccuracy: LocationAccuracy,
+    public events: Events, public changeDetector: ChangeDetectorRef) {
       this.casos = navParams.get("casos")
   }
 
   ionViewDidLoad() {
     this.ubicarCentroMapa();
   }
- 
+
+  //cuando se carga la página, si t engo una copia anterior, refresco los marcadores de casos
+  //el listado de casos se puede actualizar en ngOnInit()
+  ionViewWillEnter(){
+    if(this.isListaCasosActualizada){
+      this.mapsProvider.clearMarkers().then((res: any) => {
+        this.mapsProvider.addMarkers(this.casos)
+        this.isListaCasosActualizada = false;
+      });
+    }
+  }
   private ubicarCentroMapa(){
     //si tengo acceso a la ubicación, el centro del mapa es donde se encuentra el usuario
     //caso contrario, la cancha de river
@@ -91,4 +106,19 @@ export class MapCasosPage {
   marcarCasosAsignados(){
     this.mapsProvider.addMarkers(this.casos);
   }
+
+  ngOnInit() {
+    //suscribo la actualización de casos, por si hay que actualizar marcadores.
+    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time:Date) => {
+      console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+      this.casos = casos;
+      this.isListaCasosActualizada = true;
+    });
+  }
+
+  ngOnDestroy() {
+    this.events.unsubscribe('casos:actualizacion');
+    console.log(this.constructor.name + ": desuscripto a evento casos:actualizacion")
+  }
+
 }
