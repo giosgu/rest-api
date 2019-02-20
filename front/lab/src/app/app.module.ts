@@ -4,6 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
+import {Network} from '@ionic-native/network';
+import { Toast } from '@ionic-native/toast';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -32,6 +35,8 @@ import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Push } from '@ionic-native/push';
 import { CasosUtils } from '../providers/utils/casosUtils';
+import { NetworkProvider } from '../providers/network/network';
+
  
 @NgModule({
   declarations: [
@@ -85,7 +90,10 @@ import { CasosUtils } from '../providers/utils/casosUtils';
     LocationAccuracy,
     LaunchNavigator, 
     Push,
-    CasosUtils
+    CasosUtils,
+    Network,
+    NetworkProvider, 
+    Toast
   ]
 })
 export class AppModule {}
