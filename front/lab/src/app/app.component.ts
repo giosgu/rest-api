@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController, NavController, LoadingController } from 'ionic-angular';
+import {Toast, Nav,  Platform,  AlertController,  NavController,  LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
@@ -9,9 +9,12 @@ import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { LocationAccuracyPage } from '../pages/location-accuracy/location-accuracy';
 import { CasosServiceProvider } from '../providers/casos-service/casos-service';
 import { CasoPage } from '../pages/caso/caso';
-import { Events } from 'ionic-angular';
+import { Events, ToastController  } from 'ionic-angular';
 import { CasoUrgencia } from 'casosUrgencias';
 import { CasosUtils } from '../providers/utils/casosUtils';
+import { Network } from '@ionic-native/network';
+import { NetworkProvider } from '../providers/network/network';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -24,7 +27,8 @@ export class MyApp {
   
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private push: Push,
     public alertCtrl: AlertController, private casoService:CasosServiceProvider, public loadingCtrl: LoadingController,
-    public events: Events) {
+    public events: Events, public network: Network, public networkProvider: NetworkProvider, 
+    public toastCtrl: ToastController ) {
     
       this.initializeApp();
 
@@ -44,7 +48,21 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.iniciarNotificacionesPush();
+      this.networkProvider.initializarNetworkEvents();
+      this.administrarEventosDeRed();
+
     });
+  }
+
+  administrarEventosDeRed(): any {
+        // Suscribo al evento "offline"
+        this.events.subscribe('network:offline', () => {
+          this.networkProvider.presentToast()
+        });
+         // Suscribo al evento "online"
+         this.events.subscribe('network:online', () => {
+          this.networkProvider.closeToast();
+        });
   }
 
   iniciarNotificacionesPush():void {
