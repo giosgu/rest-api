@@ -36,7 +36,20 @@ export class CasoPage {
   comoLlegar(){
     //this.abrirMapNavigation({latitud:this.caso.direccion.coordenadas.latitud, longitud:this.caso.direccion.coordenadas.longitud})
 
-    this.launchNavigator.navigate([+this.caso.direccion.coordenadas.latitud, +this.caso.direccion.coordenadas.longitud])
+    this.launchNavigator.navigate([+this.caso.direccion.coordenadas.latitud, +this.caso.direccion.coordenadas.longitud], {
+      appSelection: {
+        dialogHeaderText: "Seleccione la app asociada",
+        cancelButtonText: "Cancelar",
+        rememberChoice: {
+          prompt: {
+            headerText: "¿Recordar la selección ?",
+            bodyText: "¿Querés usar la misma app la próxima vez?",
+            yesButtonText: "Si",
+            noButtonText: "No"
+          }
+        }
+      }
+    })
     .then(
       success => console.log('Launched navigator'),
       error => alert('Hubo un error al comenzar la navegación ' +  error)

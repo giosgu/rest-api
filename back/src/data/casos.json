@@ -33,5 +33,138 @@
             },"sintomas":"dolor de cabeza"
                 
 
-        } ]
+        },
+        {
+            "numero": "123456",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "coseguro":"250",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"17",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Paso 760 4°B",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.599640",
+                    "longitud": "-58.403326"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "789654",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "coseguro":"250",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"79",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Boulogne Sur Mer 960",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.590094",
+                    "longitud": "-58.412158"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "888547",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "coseguro":"250",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"21",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Emilio Mitre 46",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.622013",
+                    "longitud": "-58.443921"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        },
+        {
+            "numero": "414141",
+            "tipoVisita": "Visita Médica",
+            "horaAsignacion": "12:05",
+            "estado":"Aceptado",
+            "coseguro":"250",
+            "socio": {
+                "numero": "62321582354",
+                "plan": "210",
+                "nombre": "Juan",
+                "apellido": "Topo",
+                "edad":"56",
+                "telefono": "1554636117",
+                "marcas":{
+                    "cronico":"no",
+                    "socioInterno":"no",
+                    "pmi":"si"
+                }
+            },
+            "direccion": {
+                "calle": "Av. Del Libertador 15647",
+                "entreCalles": "Córdoba y San Luis",
+                "ciudad": "CABA",
+                "provincia": "CABA",
+                "barrio": "Almagro",
+                "codigoPostal": "1213",
+                "coordenadas": {
+                    "latitud": "-34.471887",
+                    "longitud": "-58.504867"
+                }
+            },"sintomas":"dolor de espalda"
+           
+        }
+  ]
 } 

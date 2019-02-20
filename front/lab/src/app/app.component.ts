@@ -77,43 +77,35 @@ export class MyApp {
         //Action button "verCaso"
         pushObject.on('verCaso').subscribe((fcmData: any) => {
           console.log(new Date() + " opción mensaje push: verCaso");
-          let loader = this.loadingCtrl.create({
-            content: 'Cargando el caso ' + fcmData.additionalData.numero,
-          });
-          loader.present().then(() => {
-            this.casoService.getCasos().subscribe(
-              (casosUrgencias) => { // Success
-                let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
-                let nuevoCaso:CasoUrgencia = CasosUtils.getCaso(casos,fcmData.additionalData.numero )
-                //invoco la vista de casos
-                //publico evento de actualización de casos
-                this.events.publish('casos:actualizacion', casos, Date.now());
-                console.log("Publicado evento: 'casos:actualizacion'")
-                loader.dismiss();
-                this.nav.push(CasoPage, {
-                  caso: nuevoCaso
-                });
-              }
-            )
-          });
+          this.mostrarCaso(fcmData.additionalData.numero);
         });
 
-        pushObject.on('notification').subscribe((data: any) => {
-          console.log('message -> ' + data.message);
+        pushObject.on('notification').subscribe((fcmData: any) => {
+          console.log('message -> ' + fcmData.message);
           //if user using app and push notification comes
-          if (data.additionalData.foreground) {
+          if (fcmData.additionalData.foreground) {
             // if application open, show popup
             let confirmAlert = this.alertCtrl.create({
-              title: data.title,
-              message: data.message,
+              title: fcmData.title,
+              message: fcmData.message,
               buttons: [{
                 text: 'Ignorar',
-                role: 'cancel'
+                //role: 'cancel'
+                handler: () => {
+                  //si no quiere ver el caso, igual actualizo las listas de caso en las demás vistas
+                  this.casoService.getCasos().subscribe(
+                    (casosUrgencias) => { // Success
+                      let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
+                      //publico evento de actualización de casos
+                      this.publicarEventoActualizacionCasos(casos)
+                    }
+                  )
+                }
               }, {
                 text: 'Ver Caso',
                 handler: () => {
-                  //TODO: Your logic here
-                  //this.nav.push(DetailsPage, { message: data.message });
+                  console.log(new Date() + " opción alertCtrl: verCaso");
+                  this.mostrarCaso(fcmData.additionalData.numero);
                 }
               }]
             });
@@ -123,6 +115,10 @@ export class MyApp {
             //TODO: Your logic on click of push notification directly
             //this.nav.push(DetailsPage, { message: data.message });
             console.log('Push notification clicked');
+            if(fcmData.additionalData.tipoNotificacion == 'nuevoCasoUrgencia'){
+              console.log(new Date() + " tipo notificación push: nuevoCasoUrgencia" );
+              this.mostrarCaso(fcmData.additionalData.numero);
+            }
            
           }
         });
@@ -136,8 +132,33 @@ export class MyApp {
 
   }
 
+  private mostrarCaso(numeroCaso: string){
+    let loader = this.loadingCtrl.create({
+      content: 'Cargando el caso ' + numeroCaso,
+    });
+    loader.present().then(() => {
+      this.casoService.getCasos().subscribe(
+        (casosUrgencias) => { // Success
+          let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
+          //publico evento de actualización de casos
+          this.publicarEventoActualizacionCasos(casos)
+          let nuevoCaso:CasoUrgencia = CasosUtils.getCaso(casos,numeroCaso )
+          //invoco la vista de casos
+          loader.dismiss();
+          this.nav.push(CasoPage, {
+            caso: nuevoCaso
+          });
+        }
+      )
+    });
+  }
 
-  
+  private publicarEventoActualizacionCasos(casos:CasoUrgencia[]){
+    this.events.publish('casos:actualizacion', casos, Date.now());
+    console.log("Publicado evento: 'casos:actualizacion'")
+
+  }
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
