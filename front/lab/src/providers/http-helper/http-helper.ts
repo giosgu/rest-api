@@ -28,7 +28,7 @@ export class HttpHelperProvider {
         //url = "http://192.168.0.148:3000"
     else
         url ="/api"    
-    return this.http.get(url+endpoint) 
+    return this.http.get(url+endpoint)
   }
 
 }

@@ -6,6 +6,7 @@ import {CasoUrgencia} from  'casosUrgencias'
 import { HttpErrorResponse } from '@angular/common/http';
 
 
+
 /**
  * Generated class for the CargaTabCasosPage page.
  *
@@ -39,10 +40,11 @@ export class CargaTabCasosPage {
 
         },
         (error:HttpErrorResponse) =>{
+          console.log("Error cargando casos: " + error.status + " " + error.message )
           if(error.status == 500){
-            alert("El servidor no se encuentra disponible, intente más tarde: " + error.message + " " + error.error);
+            alert("El servidor no se encuentra disponible, intente más tarde." );
           }else{
-            alert("Error: " + error.status + " " + error.message )
+            alert("El servidor no se encuentra disponible, intente más tarde." );
           }
           loader.dismiss();
         }
