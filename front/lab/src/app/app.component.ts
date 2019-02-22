@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {Toast, Nav,  Platform,  AlertController,  NavController,  LoadingController} from 'ionic-angular';
+import { Nav,  Platform,  AlertController,  LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
@@ -14,6 +14,7 @@ import { CasoUrgencia } from 'casosUrgencias';
 import { CasosUtils } from '../providers/utils/casosUtils';
 import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/network/network';
+import { EventosProvider } from '../providers/eventos/eventos';
 
 
 @Component({
@@ -28,11 +29,10 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private push: Push,
     public alertCtrl: AlertController, private casoService:CasosServiceProvider, public loadingCtrl: LoadingController,
     public events: Events, public network: Network, public networkProvider: NetworkProvider, 
-    public toastCtrl: ToastController ) {
+    public toastCtrl: ToastController, public eventosProvider:EventosProvider ) {
     
       this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Casos', component: CargaTabCasosPage },
       { title: 'Notificaciones', component: NotificacionesPage },
@@ -172,9 +172,7 @@ export class MyApp {
   }
 
   private publicarEventoActualizacionCasos(casos:CasoUrgencia[]){
-    this.events.publish('casos:actualizacion', casos, Date.now());
-    console.log("Publicado evento: 'casos:actualizacion'")
-
+    this.eventosProvider.publicarEventoActualizacionCasos(casos);
   }
 
   openPage(page) {

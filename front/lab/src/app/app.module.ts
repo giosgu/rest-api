@@ -36,6 +36,7 @@ import { LaunchNavigator } from '@ionic-native/launch-navigator';
 import { Push } from '@ionic-native/push';
 import { CasosUtils } from '../providers/utils/casosUtils';
 import { NetworkProvider } from '../providers/network/network';
+import { EventosProvider } from '../providers/eventos/eventos';
 
  
 @NgModule({
@@ -93,7 +94,8 @@ import { NetworkProvider } from '../providers/network/network';
     CasosUtils,
     Network,
     NetworkProvider, 
-    Toast
+    Toast,
+    EventosProvider
   ]
 })
 export class AppModule {}

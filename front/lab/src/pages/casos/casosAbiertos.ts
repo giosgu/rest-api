@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController, Events } from 'ionic-angular
 import { CasosPage } from '../casos/casos';
 import { CasoUrgencia } from 'casosUrgencias';
 import { CasosServiceProvider } from '../../providers/casos-service/casos-service';
+import { EventosProvider } from '../../providers/eventos/eventos';
 
 @Component({
     selector: 'page-casos',
@@ -14,8 +15,8 @@ import { CasosServiceProvider } from '../../providers/casos-service/casos-servic
 
     constructor(public navCtrl: NavController, public navParams: NavParams, 
       public casosService: CasosServiceProvider,public events: Events, 
-      public changeDetector: ChangeDetectorRef) {
-      super(navCtrl,navParams , casosService, events, changeDetector);
+      public changeDetector: ChangeDetectorRef, public eventosProvider:EventosProvider) {
+      super(navCtrl,navParams , casosService, events, changeDetector, eventosProvider);
     }
 
       protected inicializar(casos:any[]){

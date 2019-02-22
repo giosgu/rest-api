@@ -5,6 +5,8 @@ import {CasoPage} from '../caso/caso'
 import {CasoUrgencia} from  'casosUrgencias'
 import { Events } from 'ionic-angular';
 import { ChangeDetectorRef } from "@angular/core";
+import { HttpErrorResponse } from '@angular/common/http';
+import { EventosProvider } from '../../providers/eventos/eventos';
 
 @Component({
   selector: 'page-casos',
@@ -21,7 +23,7 @@ export class CasosPage implements OnInit {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public casosService: CasosServiceProvider,public events: Events, 
-    public changeDetector: ChangeDetectorRef) {
+    public changeDetector: ChangeDetectorRef, public eventosProvider:EventosProvider) {
       this.inicializar(this.casos = navParams.get("casos"));
     }
     
@@ -74,5 +76,25 @@ export class CasosPage implements OnInit {
 
   protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{
     return casos;
+  }
+
+  doRefresh(refresher) {
+    this.obtenerCasos().subscribe(
+      (data) => { // Success
+        let casosUrgencias:CasoUrgencia[] = data['CasoUrgencias'];
+        this.casos = this.filtrarParaChangeDetector(casosUrgencias)
+        this.eventosProvider.publicarEventoActualizacionCasos(casosUrgencias);
+      },
+      (error:HttpErrorResponse) =>{
+        console.log("Error cargando casos: " + error.status + " " + error.message )
+        if(error.status == 500){
+          alert("El servidor no se encuentra disponible, intente más tarde." );
+        }else{
+          alert("El servidor no se encuentra disponible, intente más tarde." );
+        }
+       
+      }
+      )
+      refresher.complete();
   }
 }
