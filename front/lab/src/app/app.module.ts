@@ -6,6 +6,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import {Network} from '@ionic-native/network';
 import { Toast } from '@ionic-native/toast';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 import { MyApp } from './app.component';
@@ -37,6 +38,7 @@ import { Push } from '@ionic-native/push';
 import { CasosUtils } from '../providers/utils/casosUtils';
 import { NetworkProvider } from '../providers/network/network';
 import { EventosProvider } from '../providers/eventos/eventos';
+import { StorageServiceProvider } from '../providers/storage-service/storage-service';
 
  
 @NgModule({
@@ -59,6 +61,7 @@ import { EventosProvider } from '../providers/eventos/eventos';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -95,7 +98,9 @@ import { EventosProvider } from '../providers/eventos/eventos';
     Network,
     NetworkProvider, 
     Toast,
-    EventosProvider
+    EventosProvider,
+    IonicStorageModule,
+    StorageServiceProvider
   ]
 })
 export class AppModule {}

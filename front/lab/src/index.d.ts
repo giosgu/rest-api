@@ -60,3 +60,20 @@ declare module 'notificaciones'{
     ttl: number;
   }  
 }
+
+declare module 'notificacionOsde' {
+
+  export interface NotificacionOsde {
+      tipoNotificacion: string;
+      fechaNotificacion: string;
+      titulo: string;
+      mensaje: string;
+      ttl: number;
+      leido:number;
+  }
+
+  export interface RootObject {
+      Notificacion: NotificacionOsde;
+  }
+
+}

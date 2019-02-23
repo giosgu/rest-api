@@ -1,9 +1,8 @@
-import { Platform, Nav, App } from 'ionic-angular';
-import { Injectable, ViewChild } from '@angular/core';
+import { Platform, App } from 'ionic-angular';
+import { Injectable } from '@angular/core';
 import { JsMapsProvider } from './../js-maps/js-maps';
 import { NativeMapsProvider } from './../native-maps/native-maps';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { ModalController } from 'ionic-angular';
 import { HttpHelperProvider } from '../http-helper/http-helper';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';

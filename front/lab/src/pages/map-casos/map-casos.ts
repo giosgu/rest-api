@@ -43,6 +43,9 @@ export class MapCasosPage implements OnInit {
     this.ubicarCentroMapa();
   }
 
+  ionViewDidLeave() {
+    console.log("FIXME: acá se debería apagar el GPS, para ahorrar batería.")
+  }
   //cuando se carga la página, si t engo una copia anterior, refresco los marcadores de casos
   //el listado de casos se puede actualizar en ngOnInit()
   ionViewWillEnter(){

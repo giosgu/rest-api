@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Geolocation } from '@ionic-native/geolocation';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the LocationAccuracyPage page.
@@ -22,7 +23,8 @@ export class LocationAccuracyPage {
     longitude: number
   };
 
-  constructor(private locationAccuracy: LocationAccuracy, private geolocation: Geolocation) { }
+  constructor(private locationAccuracy: LocationAccuracy, private geolocation: Geolocation, 
+    public storage:Storage) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LocationAccuracyPage');
@@ -43,6 +45,11 @@ export class LocationAccuracyPage {
     });
   */
     this.hayAccesoaUbicacionUsuario();
+  }
+
+  public borrarStorage(){
+    this.storage.remove("NOTIFICACIONES")
+    console.log("¡se eliminaron las notificaciones? " + this.storage.get("NOTIFICACIONES") == null )
   }
 
   public hayAccesoaUbicacionUsuario(){

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NotificacionesServiceProvider } from '../../providers/notificaciones-service/notificaciones-service';
 import { Notificacion } from 'notificaciones';
 import { Observable } from 'rxjs/Observable';
+import { NotificacionOsde } from 'notificacionOsde';
+import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 
 /**
  * Generated class for the NotificacionesPage page.
@@ -18,27 +20,22 @@ import { Observable } from 'rxjs/Observable';
 })
 export class NotificacionesPage {
 
-  private notificaciones:Notificacion[];
+  private notificaciones:NotificacionOsde[];
   private static readonly CIERRE_CASO = "CIERRE_CASO"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public notificacionesService:NotificacionesServiceProvider) {
-      this.obtenerNotificaciones(notificacionesService)
+    private storage:StorageServiceProvider) {
+      this.obtenerNotificaciones()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotificacionesPage');
   }
 
-  private obtenerNotificaciones(notificacionesService:NotificacionesServiceProvider):void{
-    notificacionesService.getNotificaciones().subscribe(
-      (data) => { // Success
-        this.notificaciones = data["Notificaciones"]
-      },
-      (error) =>{
-        alert("No se pudieron cargar las notificaciones" + error);
-      }
-    )    
-
+  private obtenerNotificaciones():void{
+    this.storage.getNotificaciones().then((notificacionesArray:NotificacionOsde[])=>{
+        this.notificaciones = notificacionesArray
+    });    
   }
+
 }

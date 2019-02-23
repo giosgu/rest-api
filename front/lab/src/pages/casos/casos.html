@@ -18,7 +18,7 @@
     <ion-list>
       <ion-item *ngFor="let caso of casos"  (click)="mostrarCaso($event, caso)" >
         <h2>{{caso.numero }} - {{ caso.direccion.calle | uppercase }} ({{caso.direccion.barrio}})</h2>
-        <p>Edad: {{ caso.socio.edad }} | {{caso.horaAsignacion}}</p>
+        <p>Edad: {{ caso.socio.edad }} | Asignado: {{caso.horaAsignacion}}</p>
       </ion-item>
       <ion-item *ngIf="casos.length <= 0">
         {{msgSinCasos}}
