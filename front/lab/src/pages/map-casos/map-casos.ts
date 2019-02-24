@@ -44,11 +44,14 @@ export class MapCasosPage implements OnInit {
   }
 
   ionViewDidLeave() {
-    console.log("FIXME: acá se debería apagar el GPS, para ahorrar batería.")
+    //console.log("FIXME - Dejar de geolocalizar para ahorrar batería")
+    console.log(this.constructor.name + ": Dejo de geolocalizar, para ahorrar batería")
+    this.mapsProvider.setMyLocationEnabled(false);
   }
   //cuando se carga la página, si t engo una copia anterior, refresco los marcadores de casos
   //el listado de casos se puede actualizar en ngOnInit()
   ionViewWillEnter(){
+    this.mapsProvider.setMyLocationEnabled(true);
     if(this.isListaCasosActualizada){
       this.mapsProvider.clearMarkers().then((res: any) => {
         this.mapsProvider.addMarkers(this.casos)

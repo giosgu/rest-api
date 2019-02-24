@@ -4,6 +4,7 @@ import { GoogleMaps, LatLng, GoogleMapsEvent, Marker, GoogleMapsAnimation, HtmlI
 import { CasoUrgencia } from 'casosUrgencias';
 import { App } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocationAccuracy } from '@ionic-native/location-accuracy';
 
 @Injectable()
 export class NativeMapsProvider {
@@ -12,7 +13,7 @@ export class NativeMapsProvider {
 
   //Documentación
   //https://github.com/ionic-team/ionic-native-google-maps/blob/master/documents/README.md
-  constructor(public googleMaps: GoogleMaps, public app: App) {
+  constructor(public googleMaps: GoogleMaps, public app: App, private locationAccuracy: LocationAccuracy) {
 
   }
 
@@ -36,7 +37,40 @@ export class NativeMapsProvider {
     this.map.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
       console.log('Map is ready!');
     });
-    
+
+  }
+/*
+  ionViewDidLeave(){
+    this.map.destroy()
+    console.log("Se limpió el mapa, para ahorrar batería!")
+  }
+*/
+  setMyLocationEnabled(valor:boolean){
+    //primero me aseguro que la vista se haya cargado
+    if(this.map != undefined){
+      //si el valor es true, verifico si hay acceso a la ubicacion, o lo solicito
+      if(valor){
+        this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+          if(canRequest){
+            this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+              (permitted:boolean) => {
+                if(permitted){
+                  console.log("Se cambia la propiedad this.map.setMyLocationEnabled: " + valor)
+                  this.map.setMyLocationEnabled(valor)
+                }else{
+                  this.map.setMyLocationEnabled(false)
+                  console.log("Se cambia la propiedad this.map.setMyLocationEnabled: " + false)
+                }
+              }
+            );
+          }
+        });
+        //si es false me ahorro ese paso
+      }else{
+        this.map.setMyLocationEnabled(valor)
+        console.log("Se cambia la propiedad this.map.setMyLocationEnabled: " + valor)
+      }
+    }
   }
 
   public suscribeCurrentPosition(geolocation:Geolocation){

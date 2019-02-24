@@ -22,7 +22,7 @@ export class MapsProvider {
   constructor(public platform: Platform, public app: App, private helper:HttpHelperProvider, 
     googleMaps:GoogleMaps, geolocation:Geolocation, private locationAccuracy: LocationAccuracy) {
     if(helper.isCordova()){
-        this.map = new NativeMapsProvider(googleMaps, app);
+        this.map = new NativeMapsProvider(googleMaps, app, locationAccuracy);
     } else {
         this.map = new JsMapsProvider(app);
         
@@ -48,5 +48,9 @@ export class MapsProvider {
 
    public clearMarkers():Promise<any>{
      return this.map.clearMarkers();
+   }
+
+   setMyLocationEnabled(valor:boolean){
+      this.map.setMyLocationEnabled(valor);
    }
 }

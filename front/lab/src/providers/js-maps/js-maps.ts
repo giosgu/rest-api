@@ -42,6 +42,7 @@ export class JsMapsProvider {
     };
 
     this.map = new google.maps.Map(element.nativeElement, opts);
+
    /* var legend:HTMLElement = document.getElementById('legend');
     this.armarLeyenda(legend)
     this.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
