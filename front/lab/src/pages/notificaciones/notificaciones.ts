@@ -58,7 +58,7 @@ export class NotificacionesPage implements OnInit {
   }
 
   public eliminarNotificacion(notificacionOsde:NotificacionOsde){
-
+    this.storage.borrarNotificacion(notificacionOsde);
   }
 
 }

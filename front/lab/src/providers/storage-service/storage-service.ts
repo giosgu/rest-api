@@ -41,7 +41,7 @@ export class StorageServiceProvider  {
       //verifico si la notificacion no fue procesada, ver: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/PAYLOAD.md#use-of-content_available-true
       let buscado= notificacionesArray.find(x => x.uniqueId == notificacionOsde.uniqueId)
       if(buscado != undefined){
-        console.log(this.constructor.name + " Se descarta la notificacion, ya se encuentra en la lista")
+        console.log(this.constructor.name + " Se descarta la notificacion, " + buscado.uniqueId + " ya se encuentra en la lista")
         return
       }
       //agrego el mensaje al storage
