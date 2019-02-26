@@ -36,13 +36,13 @@ export class CasosPage implements OnInit {
   }
 
   ngOnDestroy() {
-    this.events.unsubscribe('casos:actualizacion');
-    console.log(this.constructor.name + ": desuscripto a evento casos:actualizacion")
+    this.events.unsubscribe(EventosProvider.EVENTO_CASOS_ACTUALIZACION);
+    console.log(this.constructor.name + ": desuscripto a evento " + EventosProvider.EVENTO_CASOS_ACTUALIZACION)
   }
 
   suscribirEvento() {
-    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
-      console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+    this.events.subscribe(EventosProvider.EVENTO_CASOS_ACTUALIZACION, (casos:CasoUrgencia[], time) => {
+      console.log( this.constructor.name + ": evento " + EventosProvider.EVENTO_CASOS_ACTUALIZACION + " recibido. Cantidad de casos: " + casos.length);
       this.casos = this.filtrarParaChangeDetector(casos);
       this.changeDetector.detectChanges();
     });

@@ -6,6 +6,7 @@ import {CasosPendientesPage} from '../casos/casosPendientes';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import { MapCasosPage } from '../map-casos/map-casos';
 import { CasoUrgencia } from 'casosUrgencias';
+import { EventosProvider } from '../../providers/eventos/eventos';
 
 /**
  * Generated class for the TabCasosPage page.
@@ -36,8 +37,8 @@ export class TabCasosPage implements OnInit {
   }
 
   ngOnInit() {
-    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
-      console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+    this.events.subscribe(EventosProvider.EVENTO_CASOS_ACTUALIZACION, (casos:CasoUrgencia[], time) => {
+      console.log( this.constructor.name + ": evento " + EventosProvider.EVENTO_CASOS_ACTUALIZACION + " recibido. Cantidad de casos: " + casos.length);
       this.casos = casos;
       this.cantidadCasosPendientes=this.casosService.filtrarCasos(this.casos, "Nuevo").length;
       this.changeDetector.detectChanges();
@@ -46,8 +47,8 @@ export class TabCasosPage implements OnInit {
   }
 
   ngOnDestroy() {
-    this.events.unsubscribe('casos:actualizacion');
-    console.log(this.constructor.name + ": desuscripto a evento casos:actualizacion")
+    this.events.unsubscribe(EventosProvider.EVENTO_CASOS_ACTUALIZACION);
+    console.log(this.constructor.name + ": desuscripto a evento " + EventosProvider.EVENTO_CASOS_ACTUALIZACION)
   }
 
 }

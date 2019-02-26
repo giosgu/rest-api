@@ -5,6 +5,7 @@ import { MapsProvider } from './../../providers/maps/maps';
 import { CasoUrgencia } from 'casosUrgencias';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
+import { EventosProvider } from '../../providers/eventos/eventos';
 
 /**
  * Generated class for the MapCasosPage page.
@@ -118,8 +119,8 @@ export class MapCasosPage implements OnInit {
 
   ngOnInit() {
     //suscribo la actualización de casos, por si hay que actualizar marcadores.
-    this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time:Date) => {
-      console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
+    this.events.subscribe(EventosProvider.EVENTO_CASOS_ACTUALIZACION, (casos:CasoUrgencia[], time:Date) => {
+      console.log( this.constructor.name + ": evento " + EventosProvider.EVENTO_CASOS_ACTUALIZACION + "  recibido. Cantidad de casos: " + casos.length);
       this.casos = casos;
       this.isListaCasosActualizada = true;
     });
@@ -133,8 +134,8 @@ export class MapCasosPage implements OnInit {
   }
 
   ngOnDestroy() {
-    this.events.unsubscribe('casos:actualizacion');
-    console.log(this.constructor.name + ": desuscripto a evento casos:actualizacion")
+    this.events.unsubscribe(EventosProvider.EVENTO_CASOS_ACTUALIZACION);
+    console.log(this.constructor.name + ": desuscripto a evento " + EventosProvider.EVENTO_CASOS_ACTUALIZACION)
   }
 
 }
