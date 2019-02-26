@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CasosPage } from '../casos/casos';
 import { CasoUrgencia } from 'casosUrgencias';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'page-casos',
@@ -15,7 +16,8 @@ import { CasoUrgencia } from 'casosUrgencias';
     }
     
     protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{
-      return this.casos = this.filtrarCasos(casos, "Nuevo");
+      this.casos = this.filtrarCasos(casos, "Nuevo");
+      return this.casos
     }
 
   }

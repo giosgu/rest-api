@@ -75,13 +75,7 @@ export class CasosPage implements OnInit {
   }
 
   protected filtrarCasos(casos:CasoUrgencia[], estado:string){
-    let casosFiltrados :CasoUrgencia[] = []
-    for (let caso of casos) {
-        if(caso.estado === estado){
-            casosFiltrados.push(caso);
-        }
-    }
-    return casosFiltrados;
+    return this.casosService.filtrarCasos(casos, estado);
   }
 
   protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{

@@ -26,17 +26,20 @@ export class TabCasosPage implements OnInit {
   tab2Root :any = CasosPendientesPage;
   tab3Root :any = CasosAbiertosPage;
   tab4Root :any = MapCasosPage;
+  cantidadCasosPendientes:number=0;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public casosService: CasosServiceProvider, public loadingCtrl: LoadingController, 
-    public events: Events, public changeDetector: ChangeDetectorRef) {
+    public events: Events, public changeDetector: ChangeDetectorRef,) {
       this.casos = this.navParams.get("casos");
+      this.cantidadCasosPendientes=this.casosService.filtrarCasos(this.casos, "Nuevo").length;
   }
 
   ngOnInit() {
     this.events.subscribe('casos:actualizacion', (casos:CasoUrgencia[], time) => {
       console.log( this.constructor.name + ": evento 'casos:actualizacion' recibido. Cantidad de casos: " + casos.length);
       this.casos = casos;
+      this.cantidadCasosPendientes=this.casosService.filtrarCasos(this.casos, "Nuevo").length;
       this.changeDetector.detectChanges();
     });
     

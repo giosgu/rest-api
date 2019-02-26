@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHelperProvider } from '../http-helper/http-helper';
+import { CasoUrgencia } from 'casosUrgencias';
 
 /*
   Generated class for the CasosServiceProvider provider.
@@ -21,4 +22,15 @@ export class CasosServiceProvider {
   getCaso(numeroCaso:string){
     return this.helper.resolveGetUrl("/caso/"+numeroCaso);
   }
+
+  public filtrarCasos(casos:CasoUrgencia[], estado:string){
+    let casosFiltrados :CasoUrgencia[] = []
+    for (let caso of casos) {
+        if(caso.estado === estado){
+            casosFiltrados.push(caso);
+        }
+    }
+    return casosFiltrados;
+  }
+
 }
