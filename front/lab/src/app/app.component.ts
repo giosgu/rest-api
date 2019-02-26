@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, NgZone } from '@angular/core';
 import { Nav,  Platform,  AlertController,  LoadingController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -26,20 +26,21 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = CargaTabCasosPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon:string}>;
+  protected cantidadNotificacionesSinLeer:number;
   
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private push: Push,
     public alertCtrl: AlertController, private casoService:CasosServiceProvider, public loadingCtrl: LoadingController,
     public events: Events, public network: Network, public networkProvider: NetworkProvider, 
     public toastCtrl: ToastController, public eventosProvider:EventosProvider, 
-    private storageService:StorageServiceProvider ) {
+    private storageService:StorageServiceProvider, private zone:NgZone ) {
     
       this.initializeApp();
 
     this.pages = [
-      { title: 'Casos', component: CargaTabCasosPage },
-      { title: 'Notificaciones', component: NotificacionesPage },
-      { title: 'Location', component: LocationAccuracyPage },
+      { title: 'Casos', component: CargaTabCasosPage, icon:"medkit" },
+      { title: 'Notificaciones', component: NotificacionesPage, icon:"notifications" },
+      { title: 'Location', component: LocationAccuracyPage, icon:"compass" },
     ];
 
   }
@@ -59,6 +60,12 @@ export class MyApp {
   }
   administrarNotificacionesDeOsde(): any {
     this.storageService.setup();
+    this.storageService.notificacionesNoLeidas.subscribe((cantidad:number)=>{
+      console.log(this.constructor.name + " suscripto al BehaviorSubject de notificacionesNoLeidas")
+      //sin esto no se actualiza el badge sin refrescar la página!
+      this.zone.run(()=>this.cantidadNotificacionesSinLeer = cantidad);
+    });
+
   }
 
   administrarEventosDeRed(): any {
