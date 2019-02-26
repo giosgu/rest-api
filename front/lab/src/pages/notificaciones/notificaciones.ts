@@ -54,6 +54,7 @@ export class NotificacionesPage implements OnInit {
     this.storage.getNotificaciones().then((notificacionesArray:NotificacionOsde[])=>{
         this.notificaciones = notificacionesArray
         this.changeDetector.detectChanges();
+        this.storage.marcarNotificacionesComoLeidas();
     });    
   }
 
