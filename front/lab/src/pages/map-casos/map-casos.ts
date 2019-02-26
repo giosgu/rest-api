@@ -1,9 +1,10 @@
-import { Component, ElementRef, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, ChangeDetectorRef, OnInit, NgZone } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { MapsProvider } from './../../providers/maps/maps';
 import { CasoUrgencia } from 'casosUrgencias';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
+import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 
 /**
  * Generated class for the MapCasosPage page.
@@ -32,10 +33,12 @@ export class MapCasosPage implements OnInit {
   protected casos: CasoUrgencia[] = [];
   //boolean para manejar la necesidad de refrescar la lista
   private isListaCasosActualizada = false; 
+  //para el badge que muestra las notificaciones pendientes
+  protected cantidadNotificacionesSinLeer:number;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public geolocation: Geolocation, public mapsProvider: MapsProvider, private locationAccuracy: LocationAccuracy,
-    public events: Events, public changeDetector: ChangeDetectorRef) {
+    public events: Events, public changeDetector: ChangeDetectorRef, public storageService:StorageServiceProvider, private zone:NgZone) {
       this.casos = navParams.get("casos")
   }
 
@@ -43,9 +46,15 @@ export class MapCasosPage implements OnInit {
     this.ubicarCentroMapa();
   }
 
+  ionViewDidLeave() {
+    //console.log("FIXME - Dejar de geolocalizar para ahorrar batería")
+    console.log(this.constructor.name + ": Dejo de geolocalizar, para ahorrar batería")
+    this.mapsProvider.setMyLocationEnabled(false);
+  }
   //cuando se carga la página, si t engo una copia anterior, refresco los marcadores de casos
   //el listado de casos se puede actualizar en ngOnInit()
   ionViewWillEnter(){
+    this.mapsProvider.setMyLocationEnabled(true);
     if(this.isListaCasosActualizada){
       this.mapsProvider.clearMarkers().then((res: any) => {
         this.mapsProvider.addMarkers(this.casos)
@@ -114,6 +123,13 @@ export class MapCasosPage implements OnInit {
       this.casos = casos;
       this.isListaCasosActualizada = true;
     });
+    //suscribo a la cantidad de eventos sin leer
+    this.storageService.notificacionesNoLeidas.subscribe((cantidad:number)=>{
+      console.log(this.constructor.name + " suscripto al BehaviorSubject de notificacionesNoLeidas")
+      //sin esto no se actualiza el badge sin refrescar la página!
+      this.zone.run(()=>this.cantidadNotificacionesSinLeer = cantidad);
+    });
+
   }
 
   ngOnDestroy() {

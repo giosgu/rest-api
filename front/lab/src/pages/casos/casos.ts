@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {CasosServiceProvider} from '../../providers/casos-service/casos-service';
 import {CasoPage} from '../caso/caso'
@@ -7,6 +7,7 @@ import { Events } from 'ionic-angular';
 import { ChangeDetectorRef } from "@angular/core";
 import { HttpErrorResponse } from '@angular/common/http';
 import { EventosProvider } from '../../providers/eventos/eventos';
+import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 
 @Component({
   selector: 'page-casos',
@@ -20,10 +21,12 @@ export class CasosPage implements OnInit {
   caso:CasoUrgencia;
   titulo:string
   msgSinCasos:string;
+  protected cantidadNotificacionesSinLeer:number;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public casosService: CasosServiceProvider,public events: Events, 
-    public changeDetector: ChangeDetectorRef, public eventosProvider:EventosProvider) {
+    public changeDetector: ChangeDetectorRef, public eventosProvider:EventosProvider, 
+    public storageService:StorageServiceProvider, private zone:NgZone) {
       this.inicializar(this.casos = navParams.get("casos"));
     }
     
@@ -43,6 +46,13 @@ export class CasosPage implements OnInit {
       this.casos = this.filtrarParaChangeDetector(casos);
       this.changeDetector.detectChanges();
     });
+    
+    this.storageService.notificacionesNoLeidas.subscribe((cantidad:number)=>{
+      console.log(this.constructor.name + " suscripto al BehaviorSubject de notificacionesNoLeidas")
+      //sin esto no se actualiza el badge sin refrescar la página!
+      this.zone.run(()=>this.cantidadNotificacionesSinLeer = cantidad);
+    });
+
   }
 
   mostrarCaso($event, caso){
@@ -65,13 +75,7 @@ export class CasosPage implements OnInit {
   }
 
   protected filtrarCasos(casos:CasoUrgencia[], estado:string){
-    let casosFiltrados :CasoUrgencia[] = []
-    for (let caso of casos) {
-        if(caso.estado === estado){
-            casosFiltrados.push(caso);
-        }
-    }
-    return casosFiltrados;
+    return this.casosService.filtrarCasos(casos, estado);
   }
 
   protected filtrarParaChangeDetector( casos:CasoUrgencia[]):CasoUrgencia[]{

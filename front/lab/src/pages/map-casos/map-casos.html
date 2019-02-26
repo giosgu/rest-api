@@ -8,6 +8,7 @@
     <ion-navbar color="primary">
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
+        <ion-badge color="danger" *ngIf="cantidadNotificacionesSinLeer>0" >{{cantidadNotificacionesSinLeer}}</ion-badge>
       </button>
       <ion-title>Mapa de Casos</ion-title>       
     </ion-navbar>

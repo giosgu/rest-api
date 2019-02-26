@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { NotificacionesServiceProvider } from '../../providers/notificaciones-service/notificaciones-service';
 import { Notificacion } from 'notificaciones';
 import { Observable } from 'rxjs/Observable';
+import { NotificacionOsde } from 'notificacionOsde';
+import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
+import { EventosProvider } from '../../providers/eventos/eventos';
+import { ChangeDetectorRef } from "@angular/core";
 
 /**
  * Generated class for the NotificacionesPage page.
@@ -16,29 +20,45 @@ import { Observable } from 'rxjs/Observable';
   selector: 'page-notificaciones',
   templateUrl: 'notificaciones.html',
 })
-export class NotificacionesPage {
+export class NotificacionesPage implements OnInit {
 
-  private notificaciones:Notificacion[];
+  private notificaciones:NotificacionOsde[];
   private static readonly CIERRE_CASO = "CIERRE_CASO"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
-    public notificacionesService:NotificacionesServiceProvider) {
-      this.obtenerNotificaciones(notificacionesService)
+    private storage:StorageServiceProvider, public eventCtrl: Events, public changeDetector: ChangeDetectorRef) {
+      this.obtenerNotificaciones()
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotificacionesPage');
+    
+  }
+  
+  ngOnInit(){
+    //suscribo al evento de actualizacion de notificaciones, para actualizar la lista
+    this.eventCtrl.subscribe(EventosProvider.EVENTO_NOTIFICACIONES_ACTUALIZACION, () => {
+      console.log(this.constructor.name + " se recibe evento " + EventosProvider.EVENTO_NOTIFICACIONES_ACTUALIZACION);
+      this.obtenerNotificaciones();
+    });
+    console.log(this.constructor.name + ": suscripto a evento " + EventosProvider.EVENTO_NOTIFICACIONES_ACTUALIZACION )
   }
 
-  private obtenerNotificaciones(notificacionesService:NotificacionesServiceProvider):void{
-    notificacionesService.getNotificaciones().subscribe(
-      (data) => { // Success
-        this.notificaciones = data["Notificaciones"]
-      },
-      (error) =>{
-        alert("No se pudieron cargar las notificaciones" + error);
-      }
-    )    
-
+  ngOnDestroy() {
+    this.eventCtrl.unsubscribe(EventosProvider.EVENTO_NOTIFICACIONES_ACTUALIZACION);
+    console.log(this.constructor.name + ": desuscripto a evento " + EventosProvider.EVENTO_NOTIFICACIONES_ACTUALIZACION )
   }
+
+
+  private obtenerNotificaciones():void{
+    this.storage.getNotificaciones().then((notificacionesArray:NotificacionOsde[])=>{
+        this.notificaciones = notificacionesArray
+        this.changeDetector.detectChanges();
+    });    
+  }
+
+  public eliminarNotificacion(notificacionOsde:NotificacionOsde){
+    this.storage.borrarNotificacion(notificacionOsde);
+  }
+
 }

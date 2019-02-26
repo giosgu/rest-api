@@ -16,6 +16,8 @@ import { Network } from '@ionic-native/network';
 import { NetworkProvider } from '../providers/network/network';
 import { EventosProvider } from '../providers/eventos/eventos';
 
+import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +31,8 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private push: Push,
     public alertCtrl: AlertController, private casoService:CasosServiceProvider, public loadingCtrl: LoadingController,
     public events: Events, public network: Network, public networkProvider: NetworkProvider, 
-    public toastCtrl: ToastController, public eventosProvider:EventosProvider ) {
+    public toastCtrl: ToastController, public eventosProvider:EventosProvider, 
+    private storageService:StorageServiceProvider ) {
     
       this.initializeApp();
 
@@ -50,8 +53,12 @@ export class MyApp {
       this.iniciarNotificacionesPush();
       this.networkProvider.initializarNetworkEvents();
       this.administrarEventosDeRed();
+      this.administrarNotificacionesDeOsde();
 
     });
+  }
+  administrarNotificacionesDeOsde(): any {
+    this.storageService.setup();
   }
 
   administrarEventosDeRed(): any {
@@ -100,44 +107,59 @@ export class MyApp {
 
         pushObject.on('notification').subscribe((fcmData: any) => {
           console.log('message -> ' + fcmData.message);
-          //if user using app and push notification comes
+          //Si la aplicación está en foreground
           if (fcmData.additionalData.foreground) {
-            // if application open, show popup
-            let confirmAlert = this.alertCtrl.create({
-              title: fcmData.title,
-              message: fcmData.message,
-              buttons: [{
-                text: 'Ignorar',
-                //role: 'cancel'
-                handler: () => {
-                  //si no quiere ver el caso, igual actualizo las listas de caso en las demás vistas
-                  this.casoService.getCasos().subscribe(
-                    (casosUrgencias) => { // Success
-                      let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
-                      //publico evento de actualización de casos
-                      this.publicarEventoActualizacionCasos(casos)
+            //dependiendo el tipo de notificacion, realizo una acción distinta
+            switch(fcmData.additionalData.tipoNotificacion){
+              //si al usuario se le asignó un nuevo caso de Urgencia
+              case "nuevoCasoUrgencia":{
+                // Mostramos un popup
+                let confirmAlert = this.alertCtrl.create({
+                  title: fcmData.title,
+                  message: fcmData.message,
+                  buttons: [{
+                    text: 'Ignorar',
+                    //role: 'cancel'
+                    handler: () => {
+                      //si no quiere ver el caso, igual actualizo las listas de caso en las demás vistas
+                      this.casoService.getCasos().subscribe(
+                        (casosUrgencias) => { // Success
+                          let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
+                          //publico evento de actualización de casos
+                          this.publicarEventoActualizacionCasos(casos)
+                        }
+                      )
                     }
-                  )
-                }
-              }, {
-                text: 'Ver Caso',
-                handler: () => {
-                  console.log(new Date() + " opción alertCtrl: verCaso");
-                  this.mostrarCaso(fcmData.additionalData.numero);
-                }
-              }]
-            });
-            confirmAlert.present();
+                  }, {
+                    text: 'Ver Caso',
+                    handler: () => {
+                      console.log(new Date() + " opción alertCtrl: verCaso");
+                      this.mostrarCaso(fcmData.additionalData.numero);
+                    }
+                  }]
+                });
+                confirmAlert.present();
+                break; 
+              // si se le envió una notificación desde Urgencias  
+              }case "mensajeOsde":{
+                this.registrarNotificacion(fcmData);
+              }
+            }  
           } else {
             //if user NOT using app and push notification comes
             //TODO: Your logic on click of push notification directly
             //this.nav.push(DetailsPage, { message: data.message });
-            console.log('Push notification clicked');
+            console.log('Se recibió notificación push ');
             if(fcmData.additionalData.tipoNotificacion == 'nuevoCasoUrgencia'){
               console.log(new Date() + " tipo notificación push: nuevoCasoUrgencia" );
               this.mostrarCaso(fcmData.additionalData.numero);
             }
-           
+
+            if(fcmData.additionalData.tipoNotificacion == 'mensajeOsde'){
+              console.log(new Date() + " tipo notificación push: mensajeOsde" );
+              this.registrarNotificacion(fcmData);
+            }
+
           }
         });
         
@@ -148,6 +170,9 @@ export class MyApp {
     });
 
 
+  }
+  registrarNotificacion(fcmData: any): any {
+    this.storageService.registrarNotificacion(fcmData);
   }
 
   private mostrarCaso(numeroCaso: string){
