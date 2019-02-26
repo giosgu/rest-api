@@ -13,6 +13,8 @@ import { EventosProvider } from '../eventos/eventos';
 export class StorageServiceProvider  {
 
   private static NOTIFICACIONES_KEY:string = "NOTIFICACIONES"
+  public notificacionesNoLeidas:number;
+
   constructor(private storage:Storage, public eventService:EventosProvider) {
     console.log('Hello StorageServiceProvider Provider');
   }
@@ -22,9 +24,11 @@ export class StorageServiceProvider  {
     this.storage.get(StorageServiceProvider.NOTIFICACIONES_KEY).then((array:NotificacionOsde[])=>{
       console.log("Comienza el setup del storage de notificaciones");
       if(array != null){
+        this.actualizarNotificacionesNoLeidas(array);
         console.log("Se encontraron " + array.length + " notificaciones en storage")
       }else{
         this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, new Array())
+        this.actualizarNotificacionesNoLeidas(new Array())
         console.log("Se inicializó el array de notificaciones en storage")
       }
     });
@@ -47,6 +51,8 @@ export class StorageServiceProvider  {
       //agrego el mensaje al storage
       notificacionesArray.push(notificacionOsde)
       this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, notificacionesArray)
+      //actualizo la cantidad de notificaciones para el badge de novedades
+      this.actualizarNotificacionesNoLeidas(notificacionesArray)
       console.log("se guardó en el storage: " +  notificacionOsde.titulo )
       console.log("el array ahora pesa: " + notificacionesArray.length)
       //publico evento de actualizacion de notificaciones
@@ -63,6 +69,7 @@ export class StorageServiceProvider  {
       let nuevoArray:NotificacionOsde[] = notificacionesArray.filter(x => x.uniqueId != notificacion.uniqueId)
       if(nuevoArray.length !== notificacionesArray.length){
         this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, nuevoArray)
+        this.actualizarNotificacionesNoLeidas(nuevoArray)
         this.eventService.publicarEventoActualizacionNotificaciones();
         console.log(this.constructor.name + ": se eliminó a notificación " +  notificacion.uniqueId)
       }else{
@@ -72,5 +79,11 @@ export class StorageServiceProvider  {
     });
 
   }
+
+  private actualizarNotificacionesNoLeidas(notificacionesArray:NotificacionOsde[]){
+    this.notificacionesNoLeidas = notificacionesArray.filter(x=> x.leido == 0).length
+    console.log("Se actualizó la variable cantidadNotificacionesNoLeidas: " + this.notificacionesNoLeidas)
+  }
+
 
 }

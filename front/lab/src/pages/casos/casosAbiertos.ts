@@ -4,6 +4,7 @@ import { CasosPage } from '../casos/casos';
 import { CasoUrgencia } from 'casosUrgencias';
 import { CasosServiceProvider } from '../../providers/casos-service/casos-service';
 import { EventosProvider } from '../../providers/eventos/eventos';
+import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 
 @Component({
     selector: 'page-casos',
@@ -15,8 +16,9 @@ import { EventosProvider } from '../../providers/eventos/eventos';
 
     constructor(public navCtrl: NavController, public navParams: NavParams, 
       public casosService: CasosServiceProvider,public events: Events, 
-      public changeDetector: ChangeDetectorRef, public eventosProvider:EventosProvider) {
-      super(navCtrl,navParams , casosService, events, changeDetector, eventosProvider);
+      public changeDetector: ChangeDetectorRef, public eventosProvider:EventosProvider, 
+      public storageService:StorageServiceProvider) {
+      super(navCtrl,navParams , casosService, events, changeDetector, eventosProvider, storageService);
     }
 
       protected inicializar(casos:any[]){
