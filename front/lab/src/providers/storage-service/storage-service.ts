@@ -1,3 +1,4 @@
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Storage} from '@ionic/storage';
 import { Injectable } from '@angular/core';
 import { NotificacionOsde } from 'notificacionOsde';
@@ -13,7 +14,7 @@ import { EventosProvider } from '../eventos/eventos';
 export class StorageServiceProvider  {
 
   private static NOTIFICACIONES_KEY:string = "NOTIFICACIONES"
-  public notificacionesNoLeidas:number;
+  public notificacionesNoLeidas:BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private storage:Storage, public eventService:EventosProvider) {
     console.log('Hello StorageServiceProvider Provider');
@@ -81,7 +82,8 @@ export class StorageServiceProvider  {
   }
 
   private actualizarNotificacionesNoLeidas(notificacionesArray:NotificacionOsde[]){
-    this.notificacionesNoLeidas = notificacionesArray.filter(x=> x.leido == 0).length
+    let cantidad:number = notificacionesArray.filter(x=> x.leido == 0).length
+    this.notificacionesNoLeidas.next(cantidad);
     console.log("Se actualizó la variable cantidadNotificacionesNoLeidas: " + this.notificacionesNoLeidas)
   }
 
