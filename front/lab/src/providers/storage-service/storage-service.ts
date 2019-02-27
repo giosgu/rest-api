@@ -44,9 +44,9 @@ export class StorageServiceProvider  {
      
     this.storage.get(StorageServiceProvider.NOTIFICACIONES_KEY).then((notificacionesArray:NotificacionOsde[])=>{
       //verifico si la notificacion no fue procesada, ver: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/PAYLOAD.md#use-of-content_available-true
-      let buscado= notificacionesArray.find(x => x.uniqueId == notificacionOsde.uniqueId)
+      let buscado= notificacionesArray.find(x => x.notId == notificacionOsde.notId)
       if(buscado != undefined){
-        console.log(this.constructor.name + " Se descarta la notificacion, " + buscado.uniqueId + " ya se encuentra en la lista")
+        console.log(this.constructor.name + " Se descarta la notificacion, " + buscado.notId + " ya se encuentra en la lista")
         return
       }
       //agrego el mensaje al storage
@@ -67,14 +67,14 @@ export class StorageServiceProvider  {
 
   public borrarNotificacion(notificacion:NotificacionOsde){
     this.getNotificaciones().then((notificacionesArray:NotificacionOsde[])=>{
-      let nuevoArray:NotificacionOsde[] = notificacionesArray.filter(x => x.uniqueId != notificacion.uniqueId)
+      let nuevoArray:NotificacionOsde[] = notificacionesArray.filter(x => x.notId != notificacion.notId)
       if(nuevoArray.length !== notificacionesArray.length){
         this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, nuevoArray)
         this.actualizarCantidadNotificacionesNoLeidas(nuevoArray)
         this.eventService.publicarEventoActualizacionNotificaciones();
-        console.log(this.constructor.name + ": se eliminó a notificación " +  notificacion.uniqueId)
+        console.log(this.constructor.name + ": se eliminó a notificación " +  notificacion.notId)
       }else{
-        console.log(this.constructor.name + ": lógica de eliminación incorrecta, no se encuentra la notificación " +  notificacion.uniqueId)
+        console.log(this.constructor.name + ": lógica de eliminación incorrecta, no se encuentra la notificación " +  notificacion.notId)
       }
       
     });
@@ -94,6 +94,23 @@ export class StorageServiceProvider  {
       this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, notificacionesArray)
       this.actualizarCantidadNotificacionesNoLeidas(notificacionesArray)
     });
+  }
+
+  public getNotificacion(notId:number):Promise<NotificacionOsde>{
+    return new Promise((resolve, reject) => {
+      console.log(this.constructor.name + " getNotificacion; " + notId)
+      this.getNotificaciones().then((notificaciones:NotificacionOsde[])=>{
+        let buscado =  notificaciones.find(x => x.notId == notId)
+        if(buscado == undefined){
+          console.error(this.constructor.name + " no se encuentra la notificacion " + notId)
+          reject(new Error("No se encuentra la notificación en el dispositivo!"));
+        }else{
+          console.log(this.constructor.name + " se encontró la notificación " + notId)
+          resolve(buscado);
+        }
+      })
+  });
+    
   }
 
 }

@@ -17,6 +17,8 @@ import { NetworkProvider } from '../providers/network/network';
 import { EventosProvider } from '../providers/eventos/eventos';
 
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+import { NotificacionOsde } from 'notificacionOsde';
+import { NotificacionPage } from '../pages/notificacion/notificacion';
 
 
 @Component({
@@ -112,6 +114,14 @@ export class MyApp {
           this.mostrarCaso(fcmData.additionalData.numero);
         });
 
+        //Action button "nostrar notificacion"
+        pushObject.on('verNotificacion').subscribe((fcmData: any) => {
+          console.log(new Date() + " opción mensaje push: verNotificacion");
+          this.mostrarNotificacion(fcmData.additionalData.notId)
+        });
+
+        
+
         pushObject.on('notification').subscribe((fcmData: any) => {
           console.log('message -> ' + fcmData.message);
           //Si la aplicación está en foreground
@@ -159,7 +169,7 @@ export class MyApp {
             console.log('Se recibió notificación push ');
             if(fcmData.additionalData.tipoNotificacion == 'nuevoCasoUrgencia'){
               console.log(new Date() + " tipo notificación push: nuevoCasoUrgencia" );
-              this.mostrarCaso(fcmData.additionalData.numero);
+              this.cargarCasos();
             }
 
             if(fcmData.additionalData.tipoNotificacion == 'mensajeOsde'){
@@ -203,8 +213,30 @@ export class MyApp {
     });
   }
 
+  private cargarCasos(){
+    console.log("Se refresca la lista de casos por notificación push recibida")
+    this.casoService.getCasos().subscribe(
+      (casosUrgencias) => { // Success
+        let casos:CasoUrgencia[] = casosUrgencias['CasoUrgencias'];
+        //publico evento de actualización de casos
+        this.publicarEventoActualizacionCasos(casos)
+      }
+    )
+  }
+
   private publicarEventoActualizacionCasos(casos:CasoUrgencia[]){
     this.eventosProvider.publicarEventoActualizacionCasos(casos);
+  }
+
+  mostrarNotificacion(notId:number){
+    console.log("click para mostrar la notificación: " + notId)
+    this.storageService.getNotificacion(notId).then((notificacion:NotificacionOsde)=>{
+      this.nav.push(NotificacionPage, {
+        notificacionOsde: notificacion
+      });
+    }).catch((err) => {
+      console.error(err); 
+    });
   }
 
   openPage(page) {

@@ -39,6 +39,7 @@ import { CasosUtils } from '../providers/utils/casosUtils';
 import { NetworkProvider } from '../providers/network/network';
 import { EventosProvider } from '../providers/eventos/eventos';
 import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+import { NotificacionPage } from '../pages/notificacion/notificacion';
 
  
 @NgModule({
@@ -55,6 +56,7 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
     MapCasosPage,
     NotificacionesPage,
     LocationAccuracyPage,
+    NotificacionPage,
 
   ],
   imports: [
@@ -77,6 +79,7 @@ import { StorageServiceProvider } from '../providers/storage-service/storage-ser
     MapCasosPage,
     NotificacionesPage,
     LocationAccuracyPage,
+    NotificacionPage,
   ],
   providers: [
     StatusBar,

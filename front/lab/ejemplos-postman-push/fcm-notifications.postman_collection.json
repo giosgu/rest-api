@@ -21,7 +21,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"to\" : \"e6LcCZod4Pg:APA91bGvNR89BtkvHpP5YMGEwNGQMtHQjKNtErYGxCk3nzR7J283WGJlGudz0jOjOPkHIybG4gW8ZQDnJ-UhMZ1eWStJG6pn4rV38MSVNv2ziQR_Al3tC85cXL8zpz3FBkEJBL-VM0sm\",\n\t\"collapse_key\" : \"type_b\",\n\t\"data\" : {\n\t\t\"body\" : \"Av. Cordoba 2925 (Almagro)\",\n\t\t\"title\": \"Nuevo Caso Asignado\",\n\t\t\"tipoNotificacion\" : \"nuevoCasoUrgencia\",\n\t\t\"numero\" : \"654321\",\n\t\t\"notId\": 3,\n\t\t\"actions\": [\n\t\t      {\n\t\t        \"icon\": \"baseline_done_black_18\",\n\t\t        \"title\": \"ACEPTAR CASO\",\n\t\t        \"callback\": \"aceptarCaso\",\n\t\t        \"foreground\": false\n\t\t      },\n\t\t      {\n\t\t        \"icon\": \"baseline_visibility_black_18\",\n\t\t        \"title\": \"VER CASO\",\n\t\t        \"callback\": \"verCaso\",\n\t\t        \"foreground\": true\n\t\t      }\n\t\t ]\n\t}\n}"
+					"raw": "{\n\t\"to\" : \"dCuqJMHYphk:APA91bHL6CeFpotRHtdKO1Xe8ivtByQOWabreK-ZMMbsuuj21t5HDMsliBl12_eTtANd4UaXjVOxVI8lL-qhyOoIKK2swQrWnwhvCpWLeQvPpgvNzh2RYMXhMSGD0cCafXE4AK-wJFeu\",\n\t\"collapse_key\" : \"type_b\",\n\t\"data\" : {\n\t\t\"body\" : \"Av. Cordoba 2925 (Almagro)\",\n\t\t\"title\": \"Nuevo Caso Asignado\",\n\t\t\"tipoNotificacion\" : \"nuevoCasoUrgencia\",\n\t\t\"numero\" : \"789654\",\n\t\t\"content-available\": 1,\t\t\n\t\t\"notId\": 3,\n\t\t\"actions\": [\n\t\t      {\n\t\t        \"icon\": \"baseline_done_black_18\",\n\t\t        \"title\": \"ACEPTAR CASO\",\n\t\t        \"callback\": \"aceptarCaso\",\n\t\t        \"foreground\": false\n\t\t      },\n\t\t      {\n\t\t        \"icon\": \"baseline_visibility_black_18\",\n\t\t        \"title\": \"VER CASO\",\n\t\t        \"callback\": \"verCaso\",\n\t\t        \"foreground\": true\n\t\t      }\n\t\t ]\n\t}\n}"
 				},
 				"url": {
 					"raw": "https://fcm.googleapis.com/fcm/send",
@@ -59,7 +59,44 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"to\" : \"e6LcCZod4Pg:APA91bGvNR89BtkvHpP5YMGEwNGQMtHQjKNtErYGxCk3nzR7J283WGJlGudz0jOjOPkHIybG4gW8ZQDnJ-UhMZ1eWStJG6pn4rV38MSVNv2ziQR_Al3tC85cXL8zpz3FBkEJBL-VM0sm\",\n\t\"collapse_key\" : \"type_b\",\n\t\"data\" : {\n\t\t\"body\" : \"Le informamos que el valor del coseguro es de $250 a partir del 22/02/2019\",\n\t\t\"title\": \"Osde Urgencias\",\n\t\t\"tipoNotificacion\" : \"mensajeOsde\",\n\t\t\"numero\" : \"654321\",\n\t\t\"notId\": 3,\n\t\t\"content-available\": 1,\n\t\t\"ttl\": 120, \n\t\t\"uniqueId\":14,\n\t\t\"actions\": [\n\t\t      {\n\t\t        \"icon\": \"baseline_done_black_18\",\n\t\t        \"title\": \"Marcar Leída\",\n\t\t        \"callback\": \"aceptarCaso\",\n\t\t        \"foreground\": false\n\t\t      },\n\t\t      {\n\t\t        \"icon\": \"baseline_visibility_black_18\",\n\t\t        \"title\": \"VER\",\n\t\t        \"callback\": \"verNotificacion\",\n\t\t        \"foreground\": true\n\t\t      }\n\t\t ]\n\t}\n}"
+					"raw": "{\n\t\"to\" : \"dCuqJMHYphk:APA91bHL6CeFpotRHtdKO1Xe8ivtByQOWabreK-ZMMbsuuj21t5HDMsliBl12_eTtANd4UaXjVOxVI8lL-qhyOoIKK2swQrWnwhvCpWLeQvPpgvNzh2RYMXhMSGD0cCafXE4AK-wJFeu\",\n\t\"collapse_key\" : \"type_b\",\n\t\"data\" : {\n\t\t\"body\" : \"Le informamos que el valor del coseguro es de $250 a partir del 22/02/2019\",\n\t\t\"title\": \"Osde Urgencias\",\n\t\t\"tipoNotificacion\" : \"mensajeOsde\",\n\t\t\"numero\" : \"654321\",\n\t\t\"notId\": 13,\n\t\t\"content-available\": 1,\n\t\t\"ttl\": 120, \n\t\t\"flagCierreCaso\": 0,\n\t\t\"actions\": [\n\t\t      {\n\t\t        \"icon\": \"baseline_done_black_18\",\n\t\t        \"title\": \"Marcar Leída\",\n\t\t        \"callback\": \"marcarNotificacionLeida\",\n\t\t        \"foreground\": false\n\t\t      },\n\t\t      {\n\t\t        \"icon\": \"baseline_visibility_black_18\",\n\t\t        \"title\": \"VER\",\n\t\t        \"callback\": \"verNotificacion\",\n\t\t        \"foreground\": true\n\t\t      }\n\t\t ]\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://fcm.googleapis.com/fcm/send",
+					"protocol": "https",
+					"host": [
+						"fcm",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"fcm",
+						"send"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Notificación - Cierre de caso",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "key=AAAAYpUCZs4:APA91bHkVwzVBUo7Gqu-YmtPBaAZDrW_K1qArBZBPW-_NqbeU-447-2qm1cxE5ca5gtyKmZDAHiqDsigh9xOs2F2zs5gZhfux0uyYkLYzR544xxo2Jv19PWEuAonKs94OOOQOC0x1Z0y"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"to\" : \"dCuqJMHYphk:APA91bHL6CeFpotRHtdKO1Xe8ivtByQOWabreK-ZMMbsuuj21t5HDMsliBl12_eTtANd4UaXjVOxVI8lL-qhyOoIKK2swQrWnwhvCpWLeQvPpgvNzh2RYMXhMSGD0cCafXE4AK-wJFeu\",\n\t\"collapse_key\" : \"type_b\",\n\t\"data\" : {\n\t\t\"body\" : \"¿Se puede cerrar el caso 123456?\",\n\t\t\"title\": \"Cierre de Caso\",\n\t\t\"tipoNotificacion\" : \"mensajeOsde\",\n\t\t\"numero\" : \"654321\",\n\t\t\"notId\": 30,\n\t\t\"content-available\": 1,\n\t\t\"ttl\": 120, \n\t\t\"flagCierreCaso\": 1,\n\t\t\"actions\": [\n\t\t      {\n\t\t        \"icon\": \"baseline_done_black_18\",\n\t\t        \"title\": \"Marcar Leída\",\n\t\t        \"callback\": \"cerrarCaso\",\n\t\t        \"foreground\": false\n\t\t      },\n\t\t      {\n\t\t        \"icon\": \"baseline_visibility_black_18\",\n\t\t        \"title\": \"VER\",\n\t\t        \"callback\": \"verNotificacion\",\n\t\t        \"foreground\": true\n\t\t      }\n\t\t ]\n\t}\n}"
 				},
 				"url": {
 					"raw": "https://fcm.googleapis.com/fcm/send",

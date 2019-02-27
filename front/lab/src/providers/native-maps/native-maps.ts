@@ -39,39 +39,54 @@ export class NativeMapsProvider {
     });
 
   }
-/*
-  ionViewDidLeave(){
-    this.map.destroy()
-    console.log("Se limpió el mapa, para ahorrar batería!")
-  }
-*/
+
   setMyLocationEnabled(valor:boolean){
+    if(this.map != undefined){
+      this.map.setMyLocationEnabled(valor);
+    }
+  }
+
+// se comenta porque funciona mal
+setMyLocationEnabled2(valor:boolean){
+/*    console.log(this.constructor.name + " ingreso a SetMyLocationEnabled() - valor: " + valor )
     //primero me aseguro que la vista se haya cargado
     if(this.map != undefined){
+      console.log("map != undefined")
       //si el valor es true, verifico si hay acceso a la ubicacion, o lo solicito
       if(valor){
+        console.log("valor: true")
         this.locationAccuracy.canRequest().then((canRequest: boolean) => {
           if(canRequest){
-            this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
-              (permitted:boolean) => {
-                if(permitted){
-                  console.log("Se cambia la propiedad this.map.setMyLocationEnabled: " + valor)
+            console.log("can request")
+            this.locationAccuracy.isRequesting().then(
+              (isRequesting:boolean)=>{
+                if(!isRequesting){
+                  this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+                    (permitted:boolean) => {
+                      console.log("permitted " + permitted)
+                      if(permitted){
+                        console.log("Se cambia la propiedad this.map.setMyLocationEnabled (1): " + valor)
+                        this.map.setMyLocationEnabled(valor)
+                      }else{
+                        //this.map.setMyLocationEnabled(false)
+                        //console.log("Se cambia la propiedad this.map.setMyLocationEnabled: (2): " + false)
+                        console.log("No se permitió la geolocalización setMyLocationEnabled(): "+ valor)
+                      }
+                    }, error => console.log('Error requesting location permissions', error)
+                  );
                   this.map.setMyLocationEnabled(valor)
-                }else{
-                  this.map.setMyLocationEnabled(false)
-                  console.log("Se cambia la propiedad this.map.setMyLocationEnabled: " + false)
                 }
-              }
+            }
             );
           }
         });
         //si es false me ahorro ese paso
       }else{
         this.map.setMyLocationEnabled(valor)
-        console.log("Se cambia la propiedad this.map.setMyLocationEnabled: " + valor)
+        console.log("Se cambia la propiedad this.map.setMyLocationEnabled: (3) " + valor)
       }
     }
-  }
+  */  }
 
   public suscribeCurrentPosition(geolocation:Geolocation){
    let watch = geolocation.watchPosition();

@@ -70,7 +70,8 @@ declare module 'notificacionOsde' {
       mensaje: string;
       ttl: number;
       leido:number;
-      uniqueId:number;
+      notId:number;
+      flagCierreCaso:number;
   }
 
   export interface RootObject {

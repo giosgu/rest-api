@@ -7,6 +7,7 @@ import { NotificacionOsde } from 'notificacionOsde';
 import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 import { EventosProvider } from '../../providers/eventos/eventos';
 import { ChangeDetectorRef } from "@angular/core";
+import { NotificacionPage } from '../notificacion/notificacion';
 
 /**
  * Generated class for the NotificacionesPage page.
@@ -61,5 +62,13 @@ export class NotificacionesPage implements OnInit {
   public eliminarNotificacion(notificacionOsde:NotificacionOsde){
     this.storage.borrarNotificacion(notificacionOsde);
   }
+
+  mostrarNotificacion($event, notificacionOsde:NotificacionOsde){
+    console.log("click para mostrar la notificación: " + notificacionOsde.notId)
+    this.navCtrl.push(NotificacionPage, {
+      notificacionOsde: notificacionOsde
+    });
+   
+  }    
 
 }

@@ -18,10 +18,13 @@
 
 <ion-content >
     <ion-list>
-        <ion-item-sliding *ngFor="let notificacion of notificaciones">
-          <ion-item>
+        <ion-item-sliding *ngFor="let notificacion of notificaciones" >
+          <ion-item (click)="mostrarNotificacion($event, notificacion)">
               <h2>{{notificacion.titulo}}</h2>
               <p text-wrap>{{notificacion.mensaje}}</p>
+          </ion-item>
+          <ion-item *ngIf="notificaciones.length <= 0">
+              No posee notificaciones para visualizar
           </ion-item>
           <ion-item-options>
              <!-- <button ion-button color="light" icon-start>
@@ -29,14 +32,14 @@
                   Mas
               </button>
             -->
-              <button ion-button color="primary" icon-start *ngIf="notificacion.tipoNotificacion == 'CIERRE_CASO'">
+              <button ion-button color="primary" icon-start *ngIf="notificacion.flagCierreCaso == 1">
                   <ion-icon name="checkmark-circle-outline"></ion-icon>        
                   Cerrar
               </button>
               
               <button ion-button color="danger" (click)="eliminarNotificacion(notificacion)" icon-start>
                   <ion-icon name="trash"></ion-icon>
-                  Borrar
+                  Eliminar
                 </button>
           </ion-item-options>
 
