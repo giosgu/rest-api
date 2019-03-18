@@ -65,7 +65,7 @@ declare module 'notificacionOsde' {
 
   export interface NotificacionOsde {
       tipoNotificacion: string;
-      fechaNotificacion: string;
+      fechaNotificacion: Date;
       titulo: string;
       mensaje: string;
       ttl: number;

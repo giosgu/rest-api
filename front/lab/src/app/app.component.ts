@@ -63,7 +63,7 @@ export class MyApp {
   administrarNotificacionesDeOsde(): any {
     this.storageService.setup();
     this.storageService.notificacionesNoLeidas.subscribe((cantidad:number)=>{
-      console.log(this.constructor.name + " suscripto al BehaviorSubject de notificacionesNoLeidas")
+      console.log(this.constructor.name + " BehaviorSubject de notificacionesNoLeidas: " + cantidad)
       //sin esto no se actualiza el badge sin refrescar la página!
       this.zone.run(()=>this.cantidadNotificacionesSinLeer = cantidad);
     });

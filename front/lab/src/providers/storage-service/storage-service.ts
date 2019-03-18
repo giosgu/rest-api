@@ -24,14 +24,14 @@ export class StorageServiceProvider  {
     //Inicializo el array de notificaciones a usuario
     this.storage.get(StorageServiceProvider.NOTIFICACIONES_KEY).then((array:NotificacionOsde[])=>{
       console.log("Comienza el setup del storage de notificaciones");
-      if(array != null){
-        this.actualizarCantidadNotificacionesNoLeidas(array);
-        console.log("Se encontraron " + array.length + " notificaciones en storage")
-      }else{
-        this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, new Array())
-        this.actualizarCantidadNotificacionesNoLeidas(new Array())
-        console.log("Se inicializó el array de notificaciones en storage")
+      if(array == null){
+        array = new Array()
       }
+      console.log("Se encontraron " + array.length + " notificaciones en storage")
+      array = this.descartarNotificacionesExpiradas(array)
+      this.actualizarCantidadNotificacionesNoLeidas(array);
+      this.storage.set(StorageServiceProvider.NOTIFICACIONES_KEY, array)
+      console.log("Se inicializó el array de notificaciones en storage")
     });
    }
 
@@ -41,6 +41,7 @@ export class StorageServiceProvider  {
     notificacionOsde.titulo = fcmData.title,
     notificacionOsde.mensaje = fcmData.message,
     notificacionOsde.leido = 0;
+    notificacionOsde.fechaNotificacion = new Date();
      
     this.storage.get(StorageServiceProvider.NOTIFICACIONES_KEY).then((notificacionesArray:NotificacionOsde[])=>{
       //verifico si la notificacion no fue procesada, ver: https://github.com/phonegap/phonegap-plugin-push/blob/master/docs/PAYLOAD.md#use-of-content_available-true
@@ -111,6 +112,18 @@ export class StorageServiceProvider  {
       })
   });
     
+  }
+
+  //comentado hasta que funcione!
+  private descartarNotificacionesExpiradas(notificaciones:NotificacionOsde[]){
+/*    let lenghtAntesProcesamiento:number = notificaciones.length;
+    notificaciones.filter(notificacion => {
+      let horaEliminacion = +notificacion.fechaNotificacion.getTime() + (notificacion.ttl + 60 *1000);
+      console.log("comparando " + new Date().getTime() + " con " + horaEliminacion);
+      new Date().getTime()  <  horaEliminacion
+    } )
+    console.log("descartarNotificacionesExpiradas: " + (lenghtAntesProcesamiento - notificaciones.length) + " notificaciones filtradas");
+ */   return notificaciones;
   }
 
 }
