@@ -24,7 +24,7 @@ export class HttpHelperProvider {
   public resolveGetUrl(endpoint:string):Observable<Object>{
     let url:string;
     if(this.isCordova())
-        url = "http://10.66.113.47:3000"
+        url = "http://10.66.214.166:3000"
         //url = "http://192.168.0.148:3000"
     else
         url ="/api"    

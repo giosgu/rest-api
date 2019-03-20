@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
-import { NotificacionesServiceProvider } from '../../providers/notificaciones-service/notificaciones-service';
-import { Notificacion } from 'notificaciones';
-import { Observable } from 'rxjs/Observable';
 import { NotificacionOsde } from 'notificacionOsde';
 import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 import { EventosProvider } from '../../providers/eventos/eventos';

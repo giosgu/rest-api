@@ -1,8 +1,8 @@
-import { Injectable, ViewChild } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {} from 'googlemaps';
 import { CasoUrgencia } from 'casosUrgencias';
 import { CasoPage } from '../../pages/caso/caso';
-import { Nav, App } from 'ionic-angular';
+import { App } from 'ionic-angular';
 
 
 
@@ -20,7 +20,7 @@ export class JsMapsProvider {
   
   map: any;
   markers:any[]=[]
-  private readonly PIN_VERDE = 'http://maps.google.com/mapfiles/ms/micons/green-dot.png'
+  
   private readonly PIN_ROJO = 'http://maps.google.com/mapfiles/ms/micons/red-dot.png'
   private readonly PIN_AZUL = 'http://maps.google.com/mapfiles/ms/micons/blue-dot.png'
  

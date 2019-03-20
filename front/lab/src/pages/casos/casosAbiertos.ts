@@ -1,10 +1,6 @@
-import { Component, ChangeDetectorRef, NgZone } from '@angular/core';
-import { NavController, NavParams, AlertController, Events } from 'ionic-angular';
+import { Component } from '@angular/core';
 import { CasosPage } from '../casos/casos';
 import { CasoUrgencia } from 'casosUrgencias';
-import { CasosServiceProvider } from '../../providers/casos-service/casos-service';
-import { EventosProvider } from '../../providers/eventos/eventos';
-import { StorageServiceProvider } from '../../providers/storage-service/storage-service';
 
 @Component({
     selector: 'page-casos',

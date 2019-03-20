@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CasosPage } from '../casos/casos';
 import { CasoUrgencia } from 'casosUrgencias';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'page-casos',
